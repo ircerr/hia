@@ -1,0 +1,118 @@
+# HOWTO.txt
+# How it all works
+# How to build HIA
+# ircerr@HypeIRC/#HIA
+# 20160603
+
+Some background on how HIA works behind the scenes so you can DIY.
+This is basically a scratchpad for now.
+See me on HypeIRC/#HIA to discuss.
+
+
+## API Process:
+# api/api-dump.sh
+# Create LOCAL list of all index.json files for api/
+
+
+## Main Process:
+
+# watchlist/l.sh
+# Main loop - do things until cpu melts
+-runs as root
+-calls hia-iplist.sh
+-calls hia-scan-tcp.sh
+-calls hia-scan.udp.sh
+-calls hia-parse.sh
+-loops unless self is made non executable
+
+# watchlist/hia-iplist.sh
+# IP collection - gather IPs from all possible sources
+# hia.iplist results containing all known ips from all sources
+
+# watchlist/hia-scan-tcp.sh
+# IP/TCP Scanner - find open TCP ports
+# Check all known IPs for open ports
+# Multiple background nmaps
+# saves ex watchlist/data/fcf4e30914b55498cafd4f594b9c7f84.tcp.log
+#          watchlist/data/fcf4e30914b55498cafd4f594b9c7f84.tcp.oG
+
+# watchlist/hia-scan-udp.sh
+# IP/UDP Scanner - find open UDP ports 
+# Check all known IPs for open ports
+# Multiple background nmaps
+# saves ex watchlist/data/fcf4e30914b55498cafd4f594b9c7f84.udp.log
+#          watchlist/data/fcf4e30914b55498cafd4f594b9c7f84.udp.oG
+
+### TO EDIT BELOW ###
+
+# watchlist/hia-parse.sh
+#  Parser - run all hia-parse-*.sh scripts to gather more data on services
+# watchlist/hia-parse-cifs.sh
+#  Check IPs for CIFS share
+#  Dump file listngs from found shares
+# watchlist/hia-parse-dns.sh
+#  Check for open DNS server, dns spoofs, alt tlds
+# watchlist/hia-parse-ftp.sh
+#  Check for anonymous login FTP servers, do root index listing
+# watchlist/hia-parse-http.sh
+#  Check open ports for HTTP server (or ssl that tells http to go away)
+# watchlist/hia-parse-irc.sh
+#  Nothing. see probe.tcl project.
+# watchlist/hia-parse-nfs.sh
+#  Check IPs for NFS shares
+#  Dump file listngs from found shares
+# watchlist/hia-parse-nodeinfo.sh
+#  Check known httpds for nodeinfo.json
+# watchlist/hia-parse-proxy.sh
+#  Check known httpds for Proxy usage
+# watchlist/hia-parse-rsync.sh
+#  fail - cant use rsync without a password or no way to know prior if needed
+# watchlist/hia-parse-ssh.sh
+#  Check known sshds and ssh ports for ssh HostKeys
+# watchlist/hia-parse-ssl.sh
+#  Check known ssl ports for Keys and other SSL info
+# watchlist/hia-parse-ver.sh
+#  Check known open ports for using nmap for version string
+
+# watchlist/irc/eggie.sh
+#  Build IPv6 Eggie
+# watchlist/irc/probe.sh
+#  Run probe.tcl on every ircd in versions list or with ircd port
+# watchlist/lt/leaktest.sh
+#  Check for leaky httpds 
+# watchlist/peersofshame.sh
+#  Most peered nodes
+# watchlist/portpopularity.sh
+#  Most popular port by counts
+# watchlist/pv.sh
+#  Gather versions of seen nodes
+# watchlist/tracker/scrape.sh
+#  Scrape detected trackers
+#  Lookup info_hashes for titles
+# watchlist/bithunt-submit.sh
+#  Bithunt submitter script
+#  Submits all new urls from hia.urllist to Bithunt
+# watchlist/c/d3map/d3map.sh
+#  d3js map creator using walk.peers for all seen peerings
+# watchlist/c/fc00map/fc00map.sh
+#  test of fc00 map
+# watchlist/c/l.sh
+#  loop script for walk.sh + d3map.sh
+# watchlist/c/top.sh
+#  most heavily peered nodes list
+# watchlist/c/txtmap/txtmap.sh
+#  failed attempt to make a .txt of all possible paths within hyperboria
+# watchlist/c/walk.sh
+#  cjdns admin port getpeers recursive crawler
+#  * great source for IP List
+
+
+
+# NOTES #
+# bithunt-submit.sh -- Bithunt itself has a major bug
+#  http/1.1 request header is sent without a Host: header
+#  This causes requests to fail
+#  Should use http/1.0 and no Host: header or http/1.1 and Host: header with IP
+
+#EOF#
+
