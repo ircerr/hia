@@ -8,8 +8,7 @@
 This is the public repo for all HIA scripts.
 More to come as I parse out all the stuffs to make them usable by others.
 
-
-
+See HOWTO.txt for usage
 
 Contact:
   Don't bother with github or email. I don't check them often. :)
