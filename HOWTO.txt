@@ -17,6 +17,11 @@ See me on HypeIRC/#HIA to discuss.
 # api/api-dump.sh
 # Fetch list of all index.json files for api/ from server
 
+## VHosts
+hia.cjdns.ca /var/www/hia/
+feeds.hia.cjdns.ca /var/www/hia/feeds/
+api.hia.cjds.ca /var/www/hia/api/
+
 
 ## Main Process:
 
