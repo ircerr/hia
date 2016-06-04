@@ -4,3 +4,4 @@
 20160602 ./watchlist/hia-iplist.sh added.
 20160604 ./HOWTO.txt added.
 20160604 ./api/api-update.sh added.
+20160604 ./HOWTO.txt updated.
