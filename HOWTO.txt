@@ -32,6 +32,7 @@ api.hia.cjds.ca /var/www/hia/api/
 -calls hia-scan-tcp.sh
 -calls hia-scan.udp.sh
 -calls hia-parse.sh
+-calls api-update.sh
 -loops unless self is made non executable
 
 # watchlist/hia-iplist.sh
