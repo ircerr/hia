@@ -114,18 +114,26 @@ done
 mount|grep -q cifs&&umount -a -t cifs
 
 #rebuild index
+(
 cd cifs || exit 1
 (
-  echo "<html><body><pre>"
+  echo -en "<html>\n"
+  echo -en "<head>Hyperboria Intelligence Agency - CIFS</head>\n"
+  echo -en "<body>\n"
+  echo -en "<pre>\n"
+  echo -en "<b>Hyperboria Intelligence Agency</b> - Services for the Meshes - <i>cifs</i>\n"
+  echo -en "This list contains all known public CIFS shares within the meshnet.\n"
+  echo -en "\n"
+
   find . -mindepth 2 -type f -name '*.files.txt' | cut -b 3- | \
   while read X
   do
-    echo "<a href=\"$X\">$X</a>\n";
+    echo -en "<a href=\"$X\">$X</a>\n";
   done
-  echo "</pre></body></html>"
+  echo -en "</pre></body></html>\n"
 ) > index.html.new
 mv index.html.new index.html
 cd ..
-
+)
 echo "-CIFS complete"
 ) 2>&1 | tee -a hia-parse-cifs.log
