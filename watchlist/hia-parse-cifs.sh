@@ -89,7 +89,6 @@ do
         echo "hia-parse-cifs [$IP] mounting $D failed." >> /tmp/hialog.txt
       fi
       rm "$IPL/$D.nfo"
-      fi
       rmdir "$IPL/$D" "$IPL" 2>>/dev/null
       continue
     fi
