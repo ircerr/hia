@@ -117,7 +117,7 @@ mount|grep -q cifs&&umount -a -t cifs
 cd cifs || exit 1
 (
   echo "<html><body><pre>"
-  find . -mindepth 2 -type f -name 'hia-parse-ftp.tmp.log' | \
+  find . -mindepth 2 -type f -name '*.files.txt' | cut -b 3- | \
   while read X
   do
     echo "<a href=\"$X\">$X</a>\n";
