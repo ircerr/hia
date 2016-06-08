@@ -25,3 +25,4 @@
 20160608 ./watchlist/hia-parse-proxy.sh added.
 20160608 ./watchlist/hia-parse-ssh.sh added.
 20160608 ./watchlist/hia-parse-ssl.sh added.
+20160608 ./watchlist/hia-parse-ssl.sh updated.
