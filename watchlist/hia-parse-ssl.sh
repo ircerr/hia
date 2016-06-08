@@ -71,20 +71,6 @@ done
 echo "hia-parse-ssl complete"
 ) 2>&1 | tee -a hia-parse-ssl.log
 
-# nmap -sT -PN -6 -n fc00:59dd:3bb2:d592:4083:c138:5489:560a -p993 --script=+ssl-cert
-#Starting Nmap 6.00 ( http://nmap.org ) at 2016-05-17 17:47 EDT
-#Nmap scan report for fc00:59dd:3bb2:d592:4083:c138:5489:560a
-#Host is up (0.34s latency).
-#PORT    STATE SERVICE
-#993/tcp open  imaps
-#| ssl-cert: Subject: commonName=*.tuxli.ch
-#| Issuer: commonName=AlphaSSL CA - SHA256 - G2/organizationName=GlobalSign nv-sa/countryName=BE
-#| Public Key type: rsa
-#| Public Key bits: 2048
-#| Not valid before: 2015-10-25 21:33:56
-#| Not valid after:  2016-10-25 21:33:56
-#| MD5:   c9f9 9ac7 90c7 b6c2 f472 70ba 4930 cb9a
-#|_SHA-1: 1105 8a21 fa1f c1c9 665e 5a0b ced0 8ae1 f218 04ec
-#Nmap done: 1 IP address (1 host up) scanned in 3.49 seconds
+exit
 
 # EOF #
