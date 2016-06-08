@@ -10,3 +10,4 @@
 20160606 ./watchlist/hia-scan-tcp.sh added.
 20160606 ./watchlist/hia-scan-udp.sh added.
 20160606 ./HOWTO.txt updated.
+20160608 ./HOWTO.txt updated.
