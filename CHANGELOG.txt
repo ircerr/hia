@@ -12,3 +12,4 @@
 20160606 ./HOWTO.txt updated.
 20160608 ./HOWTO.txt updated.
 20160608 ./watchlist/hia-parse.sh added.
+20160608 ./watchlist/hia-parse-cifs.sh added.
