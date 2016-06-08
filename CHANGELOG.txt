@@ -21,3 +21,4 @@
 20160608 ./watchlist/hia-parse-http.sh added.
 20160608 ./watchlist/hia-parse-nfs.sh added.
 20160608 ./watchlist/hia-parse-nodeinfo.sh added.
+20160608 ./watchlist/bithunt-submit.sh added.
