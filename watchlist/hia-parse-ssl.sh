@@ -18,7 +18,7 @@ do_ping () {
 }
 
 # Sanity check
-cd /var/www/hia/watchlog/ || exit 1
+cd /var/www/hia/watchlist/ || exit 1
 
 (
 
