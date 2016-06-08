@@ -33,11 +33,11 @@ api.hia.cjds.ca /var/www/hia/api/
 -calls hia-scan.udp.sh
 -calls hia-parse.sh
 -calls api-update.sh
--loops unless self is made non executable
+--loops unless self is made non executable
 
 # watchlist/hia-iplist.sh
 # IP collection - gather IPs from all possible sources
-# hia.iplist results containing all known ips from all sources
+# saves hia.iplist containing all known ips from all sources
 
 # watchlist/hia-scan-tcp.sh
 # IP/TCP Scanner - find open TCP ports
@@ -45,6 +45,7 @@ api.hia.cjds.ca /var/www/hia/api/
 # Multiple background nmaps
 # saves ex watchlist/data/fcf4e30914b55498cafd4f594b9c7f84.tcp.log
 #          watchlist/data/fcf4e30914b55498cafd4f594b9c7f84.tcp.oG
+# saves "[$IP]:$PORT TCP" to watchlist/hia.portlist
 
 # watchlist/hia-scan-udp.sh
 # IP/UDP Scanner - find open UDP ports 
@@ -52,6 +53,8 @@ api.hia.cjds.ca /var/www/hia/api/
 # Multiple background nmaps
 # saves ex watchlist/data/fcf4e30914b55498cafd4f594b9c7f84.udp.log
 #          watchlist/data/fcf4e30914b55498cafd4f594b9c7f84.udp.oG
+# saves "[$IP]:$PORT TCP" to watchlist/hia.portlist
+
 
 ### TO EDIT BELOW ###
 
