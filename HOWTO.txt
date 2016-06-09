@@ -37,7 +37,7 @@ api.hia.cjds.ca /var/www/hia/api/
 
 # watchlist/hia-iplist.sh
 # IP collection - gather IPs from all possible sources
-# saves hia.iplist containing all known ips from all sources
+# saves watchlist/hia.iplist containing all known ips from all sources
 
 # watchlist/hia-scan-tcp.sh
 # IP/TCP Scanner - find open TCP ports
@@ -55,31 +55,38 @@ api.hia.cjds.ca /var/www/hia/api/
 #          watchlist/data/fcf4e30914b55498cafd4f594b9c7f84.udp.oG
 # saves "[$IP]:$PORT TCP" to watchlist/hia.portlist
 
-
-### TO EDIT BELOW ###
-
 # watchlist/hia-parse.sh
 #  Parser - run all hia-parse-*.sh scripts to gather more data on services
+
 # watchlist/hia-parse-cifs.sh
 #  Check IPs for CIFS share
 #  Dump file listngs from found shares
+
 # watchlist/hia-parse-dns.sh
 #  Check for open DNS server, dns spoofs, alt tlds
+#  Save results as watchlist/hia-parse-dns.db
+
 # watchlist/hia-parse-ftp.sh
 #  Check for anonymous login FTP servers, do root index listing
+#  Save results in ftp/
+
 # watchlist/hia-parse-http.sh
 #  Check open ports for HTTP server (or ssl that tells http to go away)
-# watchlist/hia-parse-irc.sh
-#  Nothing. see probe.tcl project.
+#  Save results as hia.urllist
+
 # watchlist/hia-parse-nfs.sh
 #  Check IPs for NFS shares
 #  Dump file listngs from found shares
+#  Save results as nfs/
+
 # watchlist/hia-parse-nodeinfo.sh
 #  Check known httpds for nodeinfo.json
+#  Save reults as hia.nodeinfo
+
 # watchlist/hia-parse-proxy.sh
 #  Check known httpds for Proxy usage
-# watchlist/hia-parse-rsync.sh
-#  fail - cant use rsync without a password or no way to know prior if needed
+#  Save results as hia-parse-proxy.found
+
 # watchlist/hia-parse-ssh.sh
 #  Check known sshds and ssh ports for ssh HostKeys
 # watchlist/hia-parse-ssl.sh
@@ -87,6 +94,11 @@ api.hia.cjds.ca /var/www/hia/api/
 # watchlist/hia-parse-ver.sh
 #  Check known open ports for using nmap for version string
 
+## TODO ##
+# watchlist/hia-parse-rsync.sh
+#  fail - cant use rsync without a password or no way to know prior if needed
+# watchlist/hia-parse-irc.sh
+#  Nothing. see probe.tcl project.
 # watchlist/irc/eggie.sh
 #  Build IPv6 Eggie
 # watchlist/irc/probe.sh
