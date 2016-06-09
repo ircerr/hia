@@ -61,6 +61,7 @@ api.hia.cjds.ca /var/www/hia/api/
 # watchlist/hia-parse-cifs.sh
 #  Check IPs for CIFS share
 #  Dump file listngs from found shares
+#  Save results in watchlist/cifs/
 
 # watchlist/hia-parse-dns.sh
 #  Check for open DNS server, dns spoofs, alt tlds
@@ -68,31 +69,38 @@ api.hia.cjds.ca /var/www/hia/api/
 
 # watchlist/hia-parse-ftp.sh
 #  Check for anonymous login FTP servers, do root index listing
-#  Save results in ftp/
+#  Save results in watchlist/ftp/
 
 # watchlist/hia-parse-http.sh
 #  Check open ports for HTTP server (or ssl that tells http to go away)
-#  Save results as hia.urllist
+#  Save results as watchlist/hia.urllist
 
 # watchlist/hia-parse-nfs.sh
 #  Check IPs for NFS shares
 #  Dump file listngs from found shares
-#  Save results as nfs/
+#  Save results as watchlist/nfs/
 
 # watchlist/hia-parse-nodeinfo.sh
 #  Check known httpds for nodeinfo.json
-#  Save reults as hia.nodeinfo
+#  Save reults as watchlist/hia.nodeinfo
 
 # watchlist/hia-parse-proxy.sh
 #  Check known httpds for Proxy usage
-#  Save results as hia-parse-proxy.found
+#  Save results as watchlist/hia-parse-proxy.found
 
 # watchlist/hia-parse-ssh.sh
 #  Check known sshds and ssh ports for ssh HostKeys
+#  Save results as watchlist/hia-parse-ssh.found
+
 # watchlist/hia-parse-ssl.sh
 #  Check known ssl ports for Keys and other SSL info
+#  Save resutls as watchlist/hia-parse-ssl.found
+
 # watchlist/hia-parse-ver.sh
 #  Check known open ports for using nmap for version string
+#  Save results as watchlist/hia-parse-ver.found
+
+
 
 ## TODO ##
 # watchlist/hia-parse-rsync.sh
