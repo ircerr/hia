@@ -11,7 +11,10 @@ More to come as I parse out all the stuffs to make them usable by others.
 See HOWTO.txt for usage
 
 Contact:
-  Don't bother with github or email. I don't check them often. :)
+  Do not bother with email, do not fork, nor use wiki, nor submit a bug,
+  nor submit a PR, or anything via github at all besides clone.
+  I don't check them often and will ignore github entirely :)
+
   Discussions, live results, more... via #HIA on HypeIRC
    irc.hypeirc.net via irc://irc.hypeirc.net/#HIA
    hypeirc.cjdns.ca via irc://hypeirc.cjdns.ca/#HIA
