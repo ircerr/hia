@@ -75,6 +75,10 @@ api.hia.cjds.ca /var/www/hia/api/
 #  Check open ports for HTTP server (or ssl that tells http to go away)
 #  Save results as watchlist/hia.urllist
 
+# watchlist/bithunt-submit.sh
+#  Bithunt submitter script
+#  Submits all new urls from hia.urllist to Bithunt
+
 # watchlist/hia-parse-nfs.sh
 #  Check IPs for NFS shares
 #  Dump file listngs from found shares
@@ -122,9 +126,6 @@ api.hia.cjds.ca /var/www/hia/api/
 # watchlist/tracker/scrape.sh
 #  Scrape detected trackers
 #  Lookup info_hashes for titles
-# watchlist/bithunt-submit.sh
-#  Bithunt submitter script
-#  Submits all new urls from hia.urllist to Bithunt
 # watchlist/c/d3map/d3map.sh
 #  d3js map creator using walk.peers for all seen peerings
 # watchlist/c/fc00map/fc00map.sh
