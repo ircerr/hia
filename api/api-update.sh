@@ -77,7 +77,7 @@ do
       echo -en ",\n\"Last_Scan\":\"$TS\""
     fi
     #IRC Nicks (TODO)
-    echo -en ",\n\"IRC_Nicks\":[\"todo\",\"ircnicks\"]"
+    echo -en ",\n\"IRC_Nicks\":[]"
     #URL List
     echo -en ",\n\"URLs\":["
     URLCOUNT=0
