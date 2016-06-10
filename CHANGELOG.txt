@@ -32,3 +32,4 @@
 20160608 ./HOWTO.txt updated.
 20160610 ./HOWTO.txt updated.
 20160610 ./HOWTO.txt updated.
+20160610 ./api/api-update.sh updated.
