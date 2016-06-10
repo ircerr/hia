@@ -130,8 +130,6 @@ api.hia.cjds.ca /var/www/hia/api/
 #  d3js map creator using walk.peers for all seen peerings
 # watchlist/c/fc00map/fc00map.sh
 #  test of fc00 map
-# watchlist/c/l.sh
-#  loop script for walk.sh + d3map.sh
 # watchlist/c/top.sh
 #  most heavily peered nodes list
 # watchlist/c/txtmap/txtmap.sh
