@@ -30,3 +30,4 @@
 20160608 ./watchlist/hia-parse-ver.sh added.
 20160608 ./HOWTO.txt updated.
 20160608 ./HOWTO.txt updated.
+20160610 ./HOWTO.txt updated.
