@@ -35,3 +35,4 @@
 20160610 ./api/api-update.sh updated.
 20160610 ./README.txt updated.
 20160614 ./watchlist/hia-scan-tcp.sh updated.
+20160614 ./watchlist/hia-scan-udp.sh updated.
