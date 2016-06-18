@@ -8,8 +8,9 @@ function urlencode() {
   sed 's/:/%3A/g'|sed 's/\//%2F/g'|sed 's/\[/%5B/g'|sed 's/\]/%5D/g'
 }
 
-cd /va/www/hia/watchlist/ || exit 1
+cd /var/www/hia/watchlist/ || exit 1
 
+(
 touch bithunt.submitted
 
 cat hia.urllist | \
@@ -45,6 +46,8 @@ do
   echo "-Submitted"
   rm bithunt-submit.log bithunt-submit.html bithunt-submit.err
 done
+
+) 2>&1 | tee -a bithunt-submit.log
 
 exit
 
