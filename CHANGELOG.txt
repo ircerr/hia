@@ -38,3 +38,4 @@
 20160614 ./watchlist/hia-scan-udp.sh updated.
 20160618 ./README.txt updated.
 20160618 ./README.txt updated.
+20160618 ./watchlist/bithunt-submit.sh updated.
