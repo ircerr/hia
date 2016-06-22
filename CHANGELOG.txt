@@ -39,3 +39,4 @@
 20160618 ./README.txt updated.
 20160618 ./README.txt updated.
 20160618 ./watchlist/bithunt-submit.sh updated.
+20160622 ./watchlist/l.sh added.
