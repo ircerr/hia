@@ -73,6 +73,7 @@ do
           echo "hia-parse-dns [$IP] ICANN A OK" >> /tmp/hialog.txt
         fi
       else
+        R="`echo $R|tr '\n' ' '|sed 's/ $//g'`"
         echo "ERR($R)"
         if [ -f /tmp/hialog.txt ]
         then
