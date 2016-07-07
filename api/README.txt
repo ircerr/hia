@@ -52,6 +52,11 @@ $ wget -U 'hia-api-parser' -O fcf4e30914b55498cafd4f594b9c7f84.json \
 ]
 }
 
+# IP of user
+http://api.hia.cjdns.ca/me/
+(redirects to users info if found)
+
+
 ## Notes
 # Usage of custom User-Agents to reflect project or usage case
 #  This will help debug problems and avoid generic user agent bans due to abuse
