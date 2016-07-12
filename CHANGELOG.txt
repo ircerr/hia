@@ -42,3 +42,4 @@
 20160622 ./watchlist/l.sh added.
 20160623 ./watchlist/hia-parse-dns.sh updated.
 20160707 ./api/README.txt updated.
+20160712 ./watchlist/hia-iplist.sh updated.
