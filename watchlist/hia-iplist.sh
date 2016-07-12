@@ -44,6 +44,35 @@ echo "hia-iplist begins."
 
 touch hia.iplist
 
+if [ ! -f hia.iplist.walk ] \
+|| [ "`find . -maxdepth 1 -name hia.iplist.walk -mmin +15`" != "" ]
+then
+  echo -n "-Dumping WALK IPV6 list..."
+  echo -n > hia.iplist.walk
+  wget -q -T15 -t3 -U "`basename $0|sed 's/.sh$//g'`" -O - \
+  http://hia.cjdns.ca/watchlist/c/walk.peers | \
+  tr ' ' '\n' | grep '^fc' | sort | uniq > hia.iplist.walk
+  WALK_F=$((`cat hia.iplist.walk|wc -l`))
+  echo -n " Found $WALK_F IPs"
+  echo -n > hia.iplist.walk.new
+  cat hia.iplist.walk | \
+  while read IP
+  do
+    if [ "`grep -Hx \"$IP\" hia.iplist hia.iplist.walk.new`" == "" ]
+    then
+      echo "$IP" >> hia.iplist.walk.new
+    fi
+  done
+  WALK_N=$((`cat hia.iplist.walk.new|wc -l`))
+  cat hia.iplist.walk.new >> hia.iplist
+  rm hia.iplist.walk.new
+  echo " $WALK_N NEW IPs added"
+  if [ -f /tmp/hialog.txt ]
+  then
+    echo "hia-iplist WALK $WALK_F IPs found, $WALK_N New IPs added." >> /tmp/hialog.txt
+  fi
+fi
+
 #Dump HyperDB for NEW
 #if [ ! -f hia.iplist.hyperdb ] \
 #|| [ "`find . -maxdepth 1 -name hia.iplist.hyperdb -mmin +15`" != "" ]
@@ -231,35 +260,6 @@ then
   if [ -f /tmp/hialog.txt ]
   then
     echo "hia-iplist HDB $HDB_F IPs found, $HDB_N New IPs added." >> /tmp/hialog.txt
-  fi
-fi
-
-if [ ! -f hia.iplist.walk ] \
-|| [ "`find . -maxdepth 1 -name hia.iplist.walk -mmin +15`" != "" ]
-then
-  echo -n "-Dumping WALK IPV6 list..."
-  echo -n > hia.iplist.walk
-  wget -q -T15 -t3 -U "`basename $0|sed 's/.sh$//g'`" -O - \
-  http://hia.cjdns.ca/watchlist/c/walk.peers | \
-  tr ' ' '\n' | grep '^fc' | sort | uniq > hia.iplist.walk
-  WALK_F=$((`cat hia.iplist.walk|wc -l`))
-  echo -n " Found $WALK_F IPs"
-  echo -n > hia.iplist.walk.new
-  cat hia.iplist.walk | \
-  while read IP
-  do
-    if [ "`grep -Hx \"$IP\" hia.iplist hia.iplist.walk.new`" == "" ]
-    then
-      echo "$IP" >> hia.iplist.walk.new
-    fi
-  done
-  WALK_N=$((`cat hia.iplist.walk.new|wc -l`))
-  cat hia.iplist.walk.new >> hia.iplist
-  rm hia.iplist.walk.new
-  echo " $WALK_N NEW IPs added"
-  if [ -f /tmp/hialog.txt ]
-  then
-    echo "hia-iplist WALK $WALK_F IPs found, $WALK_N New IPs added." >> /tmp/hialog.txt
   fi
 fi
 
