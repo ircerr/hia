@@ -84,7 +84,15 @@ fi
 #  -O hia.iplist.hyperdb
 #  HDB_F=$((`cat hia.iplist.hyperdb|wc -l`))
 #  echo -n " Found $HDB_F IPs"
-#  cat hia.iplist.hyperdb | grep -xvf hia.iplist > hia.iplist.hyperdb.new
+#  echo -n > hia.iplist.hyperdb.new
+#  cat hia.iplist.hyperdb | \
+#  while read IP
+#  do
+#    if [ "`grep -Hx \"$IP\" hia.iplist hia.iplist.hyperdb.new`" == "" ]
+#    then
+#      echo "$IP" >> hia.iplist.hyperdb.new
+#    fi
+#  done
 #  HDB_N=$((`cat hia.iplist.hyperdb.new|wc -l`))
 #  cat hia.iplist.hyperdb.new >> hia.iplist
 #  rm hia.iplist.hyperdb.new
@@ -97,25 +105,33 @@ fi
 # If you want to contribute to its network view please get run sendGraph.py script on your node.
 # https://github.com/zielmicha/fc00.org/blob/master/README.md
 
-if [ ! -f hia.iplist.fc00 ] \
-|| [ "`find . -maxdepth 1 -name hia.iplist.fc00 -mmin +15`" != "" ]
+if [ ! -f hia.iplist.fc00.org ] \
+|| [ "`find . -maxdepth 1 -name hia.iplist.fc00.org -mmin +15`" != "" ]
 then
-  echo -n "-Dumping fc00 IPV6 list..."
-  echo -n > hia.iplist.fc00
+  echo -n "-Dumping fc00.org IPV6 list..."
+  echo -n > hia.iplist.fc00.org
   wget -q -T15 -t3 -U "`basename $0|sed 's/.sh$//g'`" \
   http://www.fc00.org/static/graph.json -O - | \
   tr '"' '\n' | grep '^fc.*:.*:.*:.*:.*:.*:.*:' | \
-  sort | uniq > hia.iplist.fc00
-  FC00_F=$((`cat hia.iplist.fc00|wc -l`))
-  echo -n " Found $FC00_F IPs"
-  cat hia.iplist.fc00 | grep -xvf hia.iplist > hia.iplist.fc00.new
-  FC00_N=$((`cat hia.iplist.fc00.new|wc -l`))
-  cat hia.iplist.fc00.new >> hia.iplist
-  rm hia.iplist.fc00.new
-  echo " $FC00_N NEW IPs added"
+  sort | uniq > hia.iplist.fc00.org
+  FC00_ORG_F=$((`cat hia.iplist.fc00.org|wc -l`))
+  echo -n " Found $FC00_ORG_F IPs"
+  echo -n > hia.iplist.fc00.org.new
+  cat hia.iplist.fc00.org | \
+  while read IP
+  do
+    if [ "`grep -Hx \"$IP\" hia.iplist hia.iplist.fc00.org.new`" == "" ]
+    then
+      echo "$IP" >> hia.iplist.fc00.org.new
+    fi
+  done
+  FC00_ORG_N=$((`cat hia.iplist.fc00.org.new|wc -l`))
+  cat hia.iplist.fc00.org.new >> hia.iplist
+  rm hia.iplist.fc00.org.new
+  echo " $FC00_ORG_N NEW IPs added"
   if [ -f /tmp/hialog.txt ]
   then
-    echo "hia-iplist fc00 $FC00_F IPs found, $FC00_N New IPs added." >> /tmp/hialog.txt
+    echo "hia-iplist fc00.org $FC00_ORG_F IPs found, $FC00_ORG_N New IPs added." >> /tmp/hialog.txt
   fi
 fi
 
@@ -229,7 +245,15 @@ then
   done
   HA_F=$((`cat hia.iplist.ha|wc -l`))
   echo -n " Found $HA_F IPs"
-  cat hia.iplist.ha | grep -xvf hia.iplist > hia.iplist.ha.new
+  echo -n > hia.iplist.ha.new
+  cat hia.iplist.ha | \
+  while read IP
+  do
+    if [ "`grep -Hx \"$IP\" hia.iplist hia.iplist.ha.new`" == "" ]
+    then
+      echo "$IP" >> hia.iplist.ha.new
+    fi
+  done
   HA_N=$((`cat hia.iplist.ha.new|wc -l`))
   cat hia.iplist.ha.new >> hia.iplist
   rm hia.iplist.ha.new
@@ -252,7 +276,15 @@ then
   sort | uniq > hia.iplist.hdb
   HDB_F=$((`cat hia.iplist.hdb|wc -l`))
   echo -n " Found $HDB_F IPs"
-  cat hia.iplist.hdb | grep -xvf hia.iplist > hia.iplist.hdb.new
+  echo -n > hia.iplist.hdb.new
+  cat hia.iplist.hdb | \
+  while read IP
+  do
+    if [ "`grep -Hx \"$IP\" hia.iplist hia.iplist.hdb.new`" == "" ]
+    then
+      echo "$IP" >> hia.iplist.hdb.new
+    fi
+  done
   HDB_N=$((`cat hia.iplist.hdb.new|wc -l`))
   cat hia.iplist.hdb.new >> hia.iplist
   rm hia.iplist.hdb.new
@@ -262,6 +294,38 @@ then
     echo "hia-iplist HDB $HDB_F IPs found, $HDB_N New IPs added." >> /tmp/hialog.txt
   fi
 fi
+
+# http://map.fc00.li/static/graph.json
+if [ ! -f hia.iplist.fc00.li ] \
+|| [ "`find . -maxdepth 1 -name hia.iplist.fc00.li -mmin +15`" != "" ]
+then
+  echo -n "-Dumping fc00.li IPV6 list..."
+  echo -n > hia.iplist.fc00.li
+  wget -q -T15 -t3 -U "`basename $0|sed 's/.sh$//g'`" \
+  http://map.fc00.li/static/graph.json -O - | \
+  tr '"' '\n' | grep '^fc.*:.*:.*:.*:.*:.*:.*:' | \
+  sort | uniq > hia.iplist.fc00.li
+  FC00_LI_F=$((`cat hia.iplist.fc00.li|wc -l`))
+  echo -n " Found $FC00_LI_F IPs"
+  echo -n > hia.iplist.fc00.li.new
+  cat hia.iplist.fc00.li | \
+  while read IP
+  do
+    if [ "`grep -Hx \"$IP\" hia.iplist hia.iplist.fc00.li.new`" == "" ]
+    then
+      echo "$IP" >> hia.iplist.fc00.li.new
+    fi
+  done
+  FC00_LI_N=$((`cat hia.iplist.fc00.li.new|wc -l`))
+  cat hia.iplist.fc00.li.new >> hia.iplist
+  rm hia.iplist.fc00.li.new
+  echo " $FC00_LI_N NEW IPs added"
+  if [ -f /tmp/hialog.txt ]
+  then
+    echo "hia-iplist fc00.li $FC00_LI_F IPs found, $FC00_LI_N New IPs added." >> /tmp/hialog.txt
+  fi
+fi
+
 
 HIA_IPS=$((`cat hia.iplist | wc -l`))
 if [ -f /tmp/hialog.txt ]
