@@ -118,7 +118,7 @@ do
     #Send HTTP request to IP:PORT
     echo -en "GET / HTTP/1.1\r\nHost: [$IP]\r\nUser-Agent: hia-parse-http (ircerr@EFNet)\r\nAccept: */*\r\nReferer: http://hia.cjdns.ca/\r\nConnection: close\r\n\r\n" | \
     nc6 -n -w30 --idle-timeout=10 $IP $PORT 2>>/dev/null | \
-    dd bs=1M count=1 2>>/dev/null | strings > hia.tmp.$IP.$PORT.get
+    dd bs=1M count=5 2>>/dev/null | strings > hia.tmp.$IP.$PORT.get
     #Check for NO data in responce
     if [ "`cat hia.tmp.$IP.$PORT.get`" == "" ]
     then

@@ -45,3 +45,4 @@
 20160712 ./watchlist/hia-iplist.sh updated.
 20160714 ./watchlist/hia-iplist.sh updated.
 20160719 ./api/README.txt updated.
+20160917 ./watchlist/l.sh updated.
