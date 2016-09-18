@@ -9,9 +9,29 @@ while :; do
   ./hia-parse.sh
   cd /var/www/hia/api/ || exit 1
   ./api-update.sh
+  if [ ! -x l.sh ]; then break; fi
   echo "-Sleeping..."
   sleep $((60*10)) || break
   echo
 done
+
+while :
+do
+  echo -n > l.tmp
+  ls data/*.nmap | cut -d\/ -f2 | cut -d\. -f1 | \
+  while read X
+  do
+    ps axw|grep -v grep|grep nmap|grep $X | tee -a l.tmp
+  done
+  R=$((`cat l.tmp|wc -l`))
+  rm l.tmp
+  if [ $R -eq 0 ]
+  then
+    break
+  fi
+  echo "-Waiting for $R nmaps"
+  sleep 300
+done
+
 
 # EOF #
