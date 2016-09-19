@@ -23,7 +23,7 @@ http://hia.cjdns.ca/watchlist/hia.urllist | sort | \
 while read URL
 do
   #Skip if exists
-  if [ "`grep -x \"$URL\" hia-parse-http-ipfs.tried hia-parse-http-ipfs.found`" != "" ]
+  if [ "`grep -Fx \"$URL\" hia-parse-http-ipfs.tried hia-parse-http-ipfs.found`" != "" ]
   then
     continue
   fi
