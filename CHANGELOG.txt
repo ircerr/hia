@@ -49,3 +49,4 @@
 20160917 ./watchlist/hia-parse-http.sh updated.
 20160917 ./watchlist/hia-parse-http-ipfs.sh added.
 20160917 ./watchlist/hia-parse-http-titles.sh added.
+20160919 ./watchlist/l.sh updated.

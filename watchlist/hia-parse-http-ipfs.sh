@@ -28,14 +28,20 @@ do
     continue
   fi
   IP="`echo \"$URL\"|cut -d\[ -f2|cut -d\] -f1`"
+  PORT="`echo \"$URL\"|cut -d\] -f2-|cut -d: -f2-|cut -d\/ -f1`"
+  if [ "$PORT" == "" ]
+  then
+    PORT=80
+  fi
   BIP="`echo $IP|tr -d ':'`"
   if [ "`ping6 -c 5 -i .5 -w 5 $IP 2>&1 | grep 'bytes from'`" == "" ]
   then
     continue
   fi
   echo "$URL" >> hia-parse-http-ipfs.tried
-  wget -q -6 -O - -T5 -t1 -U "hia-parse-http-ipfs.sh/0.01 (HIA)" \
-  "${URL}ipfs/$TESTURI" | strings | grep -q "$TESTEXP" || continue
+  echo -en "GET /ipfs/$TESTURI HTTP/1.1\r\nHost: [$IP]\r\nUser-Agent: hia-parse-http-ipfs.sh (HIA)\r\nAccept: */*\r\nReferer: http://hia.cjdns.ca/\r\nConnection: close\r\n\r\n" | \
+  nc6 -n -w30 --idle-timeout=10 $IP $PORT 2>>/dev/null | \
+  dd bs=1M count=5 2>>/dev/null | strings | grep -q "$TESTEXP" || continue
   echo "$URL" >> hia-parse-http-ipfs.found
   echo "$URL added."
   if [ -f /tmp/hialog.txt ]
