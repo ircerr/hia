@@ -106,13 +106,13 @@ do
     #Skip tests if ip:port found in urllist file
     if [ "`cat hia.urllist|grep \"^http.*://\[$IP\]:$PORT\"`" != "" ]
     then
-      echo "-Skipping [$IP]:$PORT (exists in urllist)"
+#      echo "-Skipping [$IP]:$PORT (exists in urllist)"
       continue
     fi
     #Skip tests if ip:port if has prior unknown result
     if [ -f data/$BIP.http.$PORT.get.unknown ]
     then
-      echo "-Skipping [$IP]:$PORT (exists in data/) [unknown responce]"
+#      echo "-Skipping [$IP]:$PORT (exists in data/) [unknown responce]"
       continue
     fi
     #Send HTTP request to IP:PORT
