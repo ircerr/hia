@@ -87,12 +87,12 @@ do
   #Skip tests if ip:port if has prior unknown result
   if [ -f data/$BIP.nodeinfo.$PORT.get.unknown ]
   then
-    echo "-Skipping $URL (exists in data/) [unknown responce]"
+#    echo "-Skipping $URL (exists in data/) [unknown responce]"
     continue
   fi
   if [ -f data/$BIP.nodeinfo.$PORT.get.json ]
   then
-    echo "-Skipping $URL (exists in data/) [json responce]"
+#    echo "-Skipping $URL (exists in data/) [json responce]"
     continue
   fi
   #Send HTTP request to IP:PORT
