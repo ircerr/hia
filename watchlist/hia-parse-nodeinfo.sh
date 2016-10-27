@@ -138,11 +138,8 @@ do
   then
     #Got something, save it
     #Add list
-#echo "hia.tmp.$BIP.$PORT.get"
-#cat hia.tmp.$BIP.$PORT.get
-#break
     echo "# $NIURL" >>hia.nodeinfo
-    if [ -f /tmp/hialog.txt 
+    if [ -f /tmp/hialog.txt ]
     then
       echo "hia-parse-nodeinfo $NIURL" >> /tmp/hialog.txt
     fi
