@@ -55,3 +55,4 @@
 20160925 ./watchlist/hia-parse-http.sh updated.
 20160925 ./watchlist/hia-parse-nodeinfo.sh updated.
 20161027 ./watchlist/hia-parse-nodeinfo.sh updated.
+20161027 ./watchlist/hia-parse-nodeinfo.sh updated.
