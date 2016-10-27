@@ -97,70 +97,72 @@ do
   fi
   #Send HTTP request to IP:PORT
   echo -en "GET /nodeinfo.json HTTP/1.1\r\nHost: [$IP]\r\nUser-Agent: hia-parse-nodeinfo (ircerr@EFNet)\r\nAccept: */*\r\nReferer: http://hia.cjdns.ca/\r\nConnection: close\r\n\r\n" | \
-  nc6 -n -w30 --idle-timeout=10 $IP $PORT 2>>/dev/null | \
-  dd bs=1M count=1 2>>/dev/null > hia.tmp.$BIP.$PORT.get
+  nc6 -n -w30 --idle-timeout=15 $IP $PORT 2>>/dev/null | tr -d '\r' | \
+  dd bs=1M count=5 2>>/dev/null > hia-parse-nodeinfo.tmp.$BIP.$PORT.get
   #Check for NO data in responce
-  if [ "`cat hia.tmp.$BIP.$PORT.get`" == "" ]
+  if [ "`cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get`" == "" ]
   then
-    echo "-$URL did not return any data"
-    mv hia.tmp.$BIP.$PORT.get data/$BIP.nodeinfo.$PORT.get.unknown
+#    echo "-$URL did not return any data"
+    mv hia-parse-nodeinfo.tmp.$BIP.$PORT.get data/$BIP.nodeinfo.$PORT.get.unknown
     continue
   fi
   #Check for fail
-  if [ "`cat hia.tmp.$BIP.$PORT.get|grep '^HTTP/1.[0-1]'`" == "" ]
+  HV="`cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get|grep '^HTTP/1.[0-1]'|cut -d\  -f2-`"
+  if [ "$HV" == "" ]
   then
     #Not http
     echo "-$URL Not HTTP/1.x"
     #Save as unknown
-    mv hia.tmp.$BIP.$PORT.get data/$BIP.nodeinfo.$PORT.get.unknown
+    mv hia-parse-nodeinfo.tmp.$BIP.$PORT.get data/$BIP.nodeinfo.$PORT.get.unknown
     continue
   fi
 #HTTP/1.1 400 Bad Request
-  if [ "`cat hia.tmp.$BIP.$PORT.get|grep '^HTTP/1.[0-1] 200'`" == "" ]
+  if [ "`cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get|grep '^HTTP/1.[0-1] 200'`" == "" ]
   then
     #Not http
-    echo "-$URL Not HTTP 200"
+    echo "-$URL Not HTTP 200 ($HV)"
     #Save as unknown
-    mv hia.tmp.$BIP.$PORT.get data/$BIP.nodeinfo.$PORT.get.unknown
+    mv hia-parse-nodeinfo.tmp.$BIP.$PORT.get data/$BIP.nodeinfo.$PORT.get.unknown
     continue
   fi
 #Content-Type: application/json
-  if [ "`cat hia.tmp.$BIP.$PORT.get|grep '^Content-Type: .*json'`" == "" ]
+  CT="`cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get|grep '^Content-Type:'`"
+  if [ "`echo $CT|grep 'json'`" == "" ]
   then
     #Not http
-    echo "-$URL Not json"
+    echo "-$URL Not json ($CT)"
     #Save as unknown
-    mv hia.tmp.$BIP.$PORT.get data/$BIP.nodeinfo.$PORT.get.unknown
+    mv hia-parse-nodeinfo.tmp.$BIP.$PORT.get data/$BIP.nodeinfo.$PORT.get.unknown
     continue
   fi
   #Got something, check it
-  if [ "`cat hia.tmp.$BIP.$PORT.get|grep 'contact\|hostname\|operator'`" != "" ]
-  then
+#
+#  if [ "`cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get|grep 'contact\|country\|description\|email\|hostname\|key\|last_modified\|location\|municipality\|name\|operator\|region\|services\|uri\|xmpp'`" != "" ]
+#  then
     #Got something, save it
-    #Add list
-    echo "# $NIURL" >>hia.nodeinfo
+    echo "# $NIURL" | tee -a hia.nodeinfo
     if [ -f /tmp/hialog.txt ]
     then
       echo "hia-parse-nodeinfo $NIURL" >> /tmp/hialog.txt
     fi
-    echo "-Found: $NIURL"
-    B=0
-    cat hia.tmp.$BIP.$PORT.get | \
+    FL=$((`cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get|wc -l`))
+    BL=0
+    cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get | \
     while read L
     do
+      BL=$(($BL+1))
       if [ "$L" == "" ]
       then
-        B=1
-        continue
+        echo "BL on $BL"
+        KL=$(($FL-$BL))
+        echo "FL:$FL BL:$BL KL:$KL"
+        cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get | tail -n $KL | \
+        tee -a hia.nodeinfo
+        break
       fi
-      if [ "$B" != "1" ]
-      then
-        continue
-      fi
-      echo "$L" >>hia.nodeinfo
     done
-  fi
-  mv hia.tmp.$BIP.$PORT.get data/$BIP.nodeinfo.$PORT.get.json
+#  fi
+  mv hia-parse-nodeinfo.tmp.$BIP.$PORT.get data/$BIP.nodeinfo.$PORT.get.json
 done
 
 echo "hia-parse-nodeinfo complete"
