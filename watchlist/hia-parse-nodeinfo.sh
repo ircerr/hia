@@ -96,7 +96,7 @@ do
     continue
   fi
   #Send HTTP request to IP:PORT
-  echo -en "GET /nodeinfo.json HTTP/1.1\r\nHost: [$IP]\r\nUser-Agent: hia-parse-nodeinfo (ircerr@EFNet)\r\nAccept: */*\r\nReferer: http://hia.cjdns.ca/\r\nConnection: close\r\n\r\n" | \
+  echo -en "GET /nodeinfo.json HTTP/1.1\r\nHost: [$IP]\r\nUser-Agent: hia-parse-nodeinfo (ircerr@HypeIRC)\r\nReferer: http://hia.cjdns.ca/\r\nAccept: */*\r\nReferer: http://hia.cjdns.ca/\r\nConnection: close\r\n\r\n" | \
   nc6 -n -w30 --idle-timeout=15 $IP $PORT 2>>/dev/null | tr -d '\r' | \
   dd bs=1M count=5 2>>/dev/null > hia-parse-nodeinfo.tmp.$BIP.$PORT.get
   #Check for NO data in responce
@@ -157,7 +157,11 @@ do
         KL=$(($FL-$BL))
 #        echo "FL:$FL BL:$BL KL:$KL"
         cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get | tail -n $KL | \
-        tee -a hia.nodeinfo
+        grep -v '^$' | \
+        while read XL
+        do
+          echo "$XL" | tee -a hia.nodeinfo
+        done
         break
       fi
     done
