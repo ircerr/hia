@@ -147,6 +147,7 @@ do
     fi
     FL=$((`cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get|wc -l`))
     BL=0
+    echo -n > hia-parse-nodeinfo.tmp.$BIP.$PORT.new
     cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get | \
     while read L
     do
@@ -156,12 +157,12 @@ do
 #        echo "BL on $BL"
         KL=$(($FL-$BL))
 #        echo "FL:$FL BL:$BL KL:$KL"
-        cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get | tail -n $KL | \
-        grep -v '^$' | \
-        while read XL
-        do
-          echo "$XL" | tee -a hia.nodeinfo
-        done
+        cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get | \
+        tail -n $KL > hia-parse-nodeinfo.tmp.$BIP.$PORT.new
+        echo >> hia-parse-nodeinfo.tmp.$BIP.$PORT.new
+        cat hia-parse-nodeinfo.tmp.$BIP.$PORT.new | \
+        grep -v '^$' | tee -a hia.nodeinfo
+        rm hia-parse-nodeinfo.tmp.$BIP.$PORT.new
         break
       fi
     done
