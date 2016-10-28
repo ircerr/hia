@@ -153,9 +153,9 @@ do
       BL=$(($BL+1))
       if [ "$L" == "" ]
       then
-        echo "BL on $BL"
+#        echo "BL on $BL"
         KL=$(($FL-$BL))
-        echo "FL:$FL BL:$BL KL:$KL"
+#        echo "FL:$FL BL:$BL KL:$KL"
         cat hia-parse-nodeinfo.tmp.$BIP.$PORT.get | tail -n $KL | \
         tee -a hia.nodeinfo
         break
