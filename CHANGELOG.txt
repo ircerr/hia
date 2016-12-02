@@ -60,3 +60,4 @@
 20161027 ./watchlist/hia-parse-nodeinfo.sh updated.
 20161027 ./watchlist/hia-parse-nodeinfo.sh updated.
 20161027 ./watchlist/hia-parse-nodeinfo.sh updated.
+20161202 ./watchlist/hia-scan-udp.sh updated.
