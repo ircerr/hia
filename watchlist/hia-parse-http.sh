@@ -118,25 +118,25 @@ do
     #Send HTTP request to IP:PORT
     echo -en "GET / HTTP/1.1\r\nHost: [$IP]\r\nUser-Agent: hia-parse-http (ircerr@EFNet)\r\nAccept: */*\r\nReferer: http://hia.cjdns.ca/\r\nConnection: close\r\n\r\n" | \
     nc6 -n -w30 --idle-timeout=10 $IP $PORT 2>>/dev/null | \
-    dd bs=1M count=5 2>>/dev/null | strings > hia.tmp.$IP.$PORT.get
+    dd bs=1M count=5 2>>/dev/null | strings > hia-parse-http.tmp.$IP.$PORT.get
     #Check for NO data in responce
-    if [ "`cat hia.tmp.$IP.$PORT.get`" == "" ]
+    if [ "`cat hia-parse-http.tmp.$IP.$PORT.get`" == "" ]
     then
       echo "-[$IP]:$PORT did not return any data"
-      mv hia.tmp.$IP.$PORT.get data/$BIP.http.$PORT.get.unknown
+      mv hia-parse-http.tmp.$IP.$PORT.get data/$BIP.http.$PORT.get.unknown
       continue
     fi
     #Check for fail
-    if [ "`cat hia.tmp.$IP.$PORT.get|grep '^HTTP/1.[0-1]'`" == "" ]
+    if [ "`cat hia-parse-http.tmp.$IP.$PORT.get|grep '^HTTP/1.[0-1]'`" == "" ]
     then
       #Not http
       echo "-[$IP]:$PORT Not HTTP/1.x"
       #Save as unknown
-      mv hia.tmp.$IP.$PORT.get data/$BIP.http.$PORT.get.unknown
+      mv hia-parse-http.tmp.$IP.$PORT.get data/$BIP.http.$PORT.get.unknown
       continue
     fi
     #Got something, save it
-    mv hia.tmp.$IP.$PORT.get data/$BIP.http.$PORT.get
+    mv hia-parse-http.tmp.$IP.$PORT.get data/$BIP.http.$PORT.get
     #Default Discription as URL
     U="http://[$IP]:$PORT/"
     #check for 400 the plain http request was sent to https port
