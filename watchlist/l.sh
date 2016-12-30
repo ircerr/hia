@@ -7,6 +7,7 @@ while :; do
   ./hia-scan-tcp.sh
   ./hia-scan-udp.sh
   ./hia-parse.sh
+  ./pubk.sh
   ( cd /var/www/hia/api/ && ./api-update.sh )
   if [ ! -x l.sh ]; then break; fi
   echo "-Sleeping..."
