@@ -63,3 +63,4 @@
 20161202 ./watchlist/hia-scan-udp.sh updated.
 20161215 ./watchlist/hia-parse-http.sh updated.
 20161230 ./watchlist/l.sh updated.
+20161230 ./watchlist/hia-parse-http-titles.sh updated.
