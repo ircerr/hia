@@ -65,7 +65,7 @@ do
   else
     URL_HOST="[$URL_IP]:$URL_PORT"
   fi
-  STATUS="`nc6 -nvz -t5 -w5 $URL_IP $URL_PORT 2>&1`"
+  STATUS="`nc6 -nvz -w30 -t5 $URL_IP $URL_PORT 2>&1`"
 #Connection refused
 #Permission denied
   if [ "`echo \"$STATUS\"|grep 'Connection refused$\|Permission denied$'`" != "" ]
@@ -87,7 +87,7 @@ do
     continue
   fi
   echo -en "GET $URL_PATH HTTP/1.1\r\nHost: $URL_HOST\r\nUser-Agent: hia-parse-http-titles.sh/0.01 (HIA)\r\nAccept: */*\r\nReferer: http://hia.cjdns.ca/watchlist/hia-parse-http-titles.sh\r\nConnection: close\r\n\r\n" | \
-  nc6 -n -w30 --idle-timeout=30 $URL_IP $URL_PORT 2>>/dev/null | \
+  nc6 -n -w30 -t5 $URL_IP $URL_PORT 2>>/dev/null | \
   dd bs=1M count=5 2>>/dev/null | strings > hia-parse-http-titles.tmp.$URL_FB.get
   if [ "`cat hia-parse-http-titles.tmp.$URL_FB.get`" == "" ]
   then
