@@ -181,7 +181,7 @@ cd /var/www/hia/watchlist/ || exit 1
 (
 echo "hia-scan-udp begins."
 
-MAXBG=25
+MAXBG=20
 
 touch hia.iplist
 touch hia.portlist

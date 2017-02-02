@@ -65,3 +65,4 @@
 20161230 ./watchlist/l.sh updated.
 20161230 ./watchlist/hia-parse-http-titles.sh updated.
 20170111 ./watchlist/hia-iplist.sh updated.
+20170202 ./watchlist/hia-scan-tcp.sh updated.
