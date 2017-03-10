@@ -67,3 +67,5 @@
 20170111 ./watchlist/hia-iplist.sh updated.
 20170202 ./watchlist/hia-scan-tcp.sh updated.
 20170202 ./watchlist/hia-scan-udp.sh updated.
+20170220 ./watchlist/hia-scan-tcp.sh updated.
+20170220 ./watchlist/hia-scan-udp.sh updated.
