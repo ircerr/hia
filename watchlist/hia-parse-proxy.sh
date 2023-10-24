@@ -199,6 +199,10 @@ cat hia.urllist | sort -n | uniq | \
 while read URL
 do
   IP="`echo \"$URL\"|cut -d\[ -f2|cut -d\] -f1`"
+  if [ "`grep -F \"$IP\" hia.iplist`" == "" ]
+  then
+    continue
+  fi
   PORT="`echo \"$URL\"|cut -d\] -f2-|cut -d: -f2|cut -d\/ -f1`"
   TF="`echo $IP.$PORT|tr -d ':'`"
   if [ "$TF" == "fcf4e30914b55498cafd4f594b9c7f84.80" ]
