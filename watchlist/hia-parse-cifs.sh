@@ -26,10 +26,15 @@ do
 ##    echo "$IP (Skip/exists)"
     continue
   fi
+  if [ "`ping6 -c 5 -i .5 -w 15 $IP 2>&1 | grep 'bytes from'`" == "" ]
+  then
+##    echo "$IP (Skip/no pong)"
+    continue
+  fi
 #  echo -n "$IP "
   mkdir -p $IPL
   smbclient -U anonymous -N -L//$IP &>$IPL/hia-parse-cifs.log
-  if [ "`cat $IPL/hia-parse-cifs.log|grep '^Connection to .* failed\|^protocol negotiation failed'`" != "" ]
+  if [ "`cat $IPL/hia-parse-cifs.log|grep 'Connection to .* failed\|^protocol negotiation failed'`" != "" ]
   then
 #    echo "-Failed"
     rm $IPL/hia-parse-cifs.log
