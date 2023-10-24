@@ -39,7 +39,7 @@ do
   then
     continue
   fi
-  nc6 -nvz -t10 -w2 $IP $PORT 2>&1 | grep -q 'open$' || continue
+  nc -nvz -w15 $IP $PORT 2>&1 | grep -q 'succeeded' || continue
   echo "$IP $PORT" >> hia-parse-ssh.tried
   echo "IP:$IP PORT:$PORT"
   nmap -sT -PN -6 -n -p$PORT $IP --script=+ssh-hostkey &>hia-parse-ssh.tmp
