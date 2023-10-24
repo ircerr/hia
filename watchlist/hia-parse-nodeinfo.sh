@@ -70,6 +70,10 @@ do
   #Pad IPV6 to include missing zeros
   IP="`echo $URL|cut -d\[ -f2|cut -d\] -f1`"
   IP="`padip $IP`"
+  if [ "`grep -F \"$IP\" hia.iplist`" == "" ]
+  then
+    continue
+  fi
   #Port
   PORT="`echo $URL|cut -d\] -f2|cut -d\/ -f1|cut -d: -f2`"
   #Remove :'s for file/dir name usage
