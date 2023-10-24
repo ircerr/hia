@@ -100,3 +100,4 @@
 20231024 ./test/d3map/d3.v3.min.js added.
 20231024 ./README.txt updated.
 20231024 ./watchlist/hia-parse-cifs.sh updated.
+20231024 ./watchlist/hia-parse-dns.sh updated.

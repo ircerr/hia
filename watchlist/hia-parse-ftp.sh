@@ -52,6 +52,10 @@ do
   then
     continue
   fi
+  if [ "`grep -F \"$IP\" hia.iplist`" == "" ]
+  then
+    continue
+  fi
   nc -w15 -n -v -z $IP $PORT 2>&1 | grep -q 'succeeded' || continue
   echo "-Trying $IP $PORT"
   check_ftp $IP $PORT
