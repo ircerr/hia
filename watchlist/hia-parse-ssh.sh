@@ -26,6 +26,10 @@ echo "hia-parse-ssh begins"
 cat hia-parse-ver.found | grep -i ssh | cut -d\  -f-2 | sort | uniq | \
 while read IP PORT
 do
+  if [ "`grep -F \"$IP\" hia.iplist`" == "" ]
+  then
+    continue
+  fi
   if [ "`cat hia-parse-ssh.tried|grep -x \"$IP $PORT\"`" != "" ]
   then
     continue
