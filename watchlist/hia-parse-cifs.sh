@@ -26,6 +26,10 @@ do
 ##    echo "$IP (Skip/exists)"
     continue
   fi
+  if [ "`grep -F \"$IP\" hia.iplist`" == "" ]
+  then
+    continue
+  fi
   if [ "`ping6 -c 5 -i .5 -w 15 $IP 2>&1 | grep 'bytes from'`" == "" ]
   then
 ##    echo "$IP (Skip/no pong)"
