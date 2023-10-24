@@ -1,4 +1,5 @@
 #!/bin/bash
+exit
 
 #hia-parse-ftp.sh
 
@@ -51,7 +52,7 @@ do
   then
     continue
   fi
-  nc6 -t10 -w2 -n -v -z -6 $IP $PORT 2>&1 | grep -q open$ || continue
+  nc -w15 -n -v -z $IP $PORT 2>&1 | grep -q 'succeeded' || continue
   echo "-Trying $IP $PORT"
   check_ftp $IP $PORT
 #<--- 550 SSL/TLS required on the control channel
