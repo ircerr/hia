@@ -225,7 +225,7 @@ do
     echo -en "\n]"
     echo -en ",\n\"Peers\":["
     PEERNUM=0
-    PEERFILE="/var/www/hia/watchlist/c/walk.peers.`date +%Y%m%d`"
+    PEERFILE="/var/www/hia/watchlist/c/walk.peers.`date -u +%Y%m%d`"
     if [ -f $PEERFILE ]
     then
       cat $PEERFILE | grep "$IP" | tr ' ' '\n' | grep -v "$IP" | sort | uniq | \

@@ -9,9 +9,10 @@ while :; do
   ./hia-parse.sh
   ./pubk.sh
   ( cd /var/www/hia/api/ && ./api-update.sh )
+  ./clean.sh
   if [ ! -x l.sh ]; then break; fi
-  echo "-Sleeping..."
-  sleep $((60*10)) || break
+#  echo "-Sleeping..."
+#  sleep $((60*10)) || break
   echo
 done
 

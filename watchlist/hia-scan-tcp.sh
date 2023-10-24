@@ -266,14 +266,14 @@ do
   fi
   if [ -f data/$BIP.tcp.oG ]
   then
-    TSO=$((`date +%s`-`date -r data/$BIP.tcp.oG +%s`))
+    TSO=$((`date -u +%s`-`date -u -r data/$BIP.tcp.oG +%s`))
     if [ $TSO -lt $((60*60*24*7)) ] # repeat after 7 days
     then
 #      echo "-$IP exists as data/$BIP.tcp.oG -${TSO}s old -Skipping."
       continue
     fi
     echo "-$IP exists as data/$BIP.tcp.oG -${TSO}s old -Archiving old."
-    DS="`date -r data/$BIP.tcp.oG +%Y%m%d`"
+    DS="`date -u -r data/$BIP.tcp.oG +%Y%m%d`"
     mkdir -p data.saved/$DS/
     mv data/$BIP.tcp.* data.saved/$DS/
   fi
