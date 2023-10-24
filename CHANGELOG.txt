@@ -101,3 +101,4 @@
 20231024 ./README.txt updated.
 20231024 ./watchlist/hia-parse-cifs.sh updated.
 20231024 ./watchlist/hia-parse-dns.sh updated.
+20231024 ./watchlist/hia-parse-ftp.sh updated.

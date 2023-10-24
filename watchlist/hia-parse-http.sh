@@ -80,6 +80,10 @@ do
   then
     continue
   fi
+  if [ "`grep -F \"$IP\" hia.iplist`" == "" ]
+  then
+    continue
+  fi
   BIP="`echo $IP|tr -d ':'`"
   if [ "`ping6 -c 5 -i .5 -w 5 $IP 2>&1 | grep 'bytes from'`" == "" ]
   then
