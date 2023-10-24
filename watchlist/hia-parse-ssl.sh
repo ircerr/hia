@@ -28,6 +28,10 @@ echo "hia-parse-ssl begins"
 cat hia-parse-ver.found | grep ' ssl|' | cut -d\  -f-2 | sort | uniq | \
 while read IP PORT
 do
+  if [ "`grep -F \"$IP\" hia.iplist`" == "" ]
+  then
+    continue
+  fi
   if [ "`cat hia-parse-ssl.tried|grep -x \"$IP $PORT\"`" != "" ]
   then
     continue
