@@ -56,8 +56,7 @@ TS="`date -u +%Y%m%d`"
 wget -qN "http://hia.cjdns.ca/watchlist/c/walk.peers.$TS" -O - | \
 tr ' ' '\n' | sort -n | uniq > hia-parse-http-ipfs.tmp.peers
 
-wget -q -6 -O - -U "hia-parse-http-ipfs.sh/0.01 (HIA)" \
-http://hia.cjdns.ca/watchlist/hia.urllist | sort | \
+cat hia.urllist | sort | \
 while read URL
 do
   #Skip if exists
@@ -68,6 +67,10 @@ do
   IP="`echo \"$URL\"|cut -d\[ -f2|cut -d\] -f1`"
   IP="`padip $IP`"
   if [ "`grep \"$IP\" hia-parse-http-ipfs.tmp.peers`" == "" ]
+  then
+    continue
+  fi
+  if [ "`grep -F \"$IP\" hia.iplist`" == "" ]
   then
     continue
   fi
