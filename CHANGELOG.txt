@@ -71,3 +71,4 @@
 20170220 ./watchlist/hia-scan-udp.sh updated.
 20231024 ./watchlist/l.sh updated.
 20231024 ./watchlist/hia-iplist.sh updated.
+20231024 ./watchlist/hia-parse-cifs.sh updated.

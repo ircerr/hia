@@ -54,7 +54,7 @@ do
   then
     continue
   fi
-  nc6 -nvz -t10 -w2 $IP 53 2>&1 | grep -q 'open$' || continue
+  nc -nvz -w15 $IP 53 2>&1 | grep -q 'succeeded' || continue
 #  echo "[$IP]"
   if [ "`cat hia-parse-dns.db|grep \"^\[$IP\] ICANN A \"`" == "" ]
   then
