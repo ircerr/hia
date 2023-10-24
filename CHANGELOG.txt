@@ -84,3 +84,4 @@
 20231024 ./watchlist/hia-parse-ssl.sh updated.
 20231024 ./watchlist/clean.sh added.
 20231024 ./watchlist/hia-parse-http-git.sh added.
+20231024 ./watchlist/pubk.sh added.
