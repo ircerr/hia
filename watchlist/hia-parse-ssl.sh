@@ -41,7 +41,7 @@ do
   then
     continue
   fi
-  nc6 -nvz -t10 -w2 $IP $PORT 2>&1 | grep -q 'open$' || continue
+  nc -nvz -w15 $IP $PORT 2>&1 | grep -q 'succeeded' || continue
   echo "$IP $PORT" >> hia-parse-ssl.tried
   echo "IP:$IP PORT:$PORT"
   nmap -sT -PN -6 -n -p$PORT $IP --script=+ssl-cert &>hia-parse-ssl.tmp
