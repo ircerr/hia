@@ -19,17 +19,15 @@ touch hia-parse-http-git.found
 touch hia-parse-http-git.html
 
 TS="`date -u +%Y%m%d`"
-wget -qN "http://hia.cjdns.ca/watchlist/c/walk.peers.$TS" -O - | \
-tr ' ' '\n' | sort -n | uniq > hia-parse-http-git.tmp.peers
+wget -q -U "http-parse-http-git" \
+"http://hia.cjdns.ca/watchlist/hia.iplist" -O hia-parse-http-git.tmp.iplist
 
 # Seed list
-#if [ ! -f hia-parse-http-git.tmp.urllist ]
-#then
-  wget -q -U "hia-parse-http-git" -O hia-parse-http-git.tmp.urllist http://hia.cjdns.ca/watchlist/hia.urllist
-#fi
+wget -q -U "hia-parse-http-git" \
+"http://hia.cjdns.ca/watchlist/hia.urllist" -O hia-parse-http-git.tmp.urllist
 
 # Check URLs
-cat hia-parse-http-git.tmp.peers | \
+cat hia-parse-http-git.tmp.iplist | \
 while read PEER
 do
   cat hia-parse-http-git.tmp.urllist | \

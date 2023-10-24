@@ -110,3 +110,4 @@
 20231024 ./watchlist/hia-parse-proxy.sh updated.
 20231024 ./watchlist/hia-parse-ssh.sh updated.
 20231024 ./watchlist/hia-parse-ssl.sh updated.
+20231024 ./watchlist/hia-parse-ver.sh updated.
