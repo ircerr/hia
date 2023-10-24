@@ -24,7 +24,7 @@ function test_proxy_get_clearnet_domain() {
   echo -en "Host: cjdns.ca\r\n"
   echo -en "\r\n"
   ) | \
-  ( nc6 -n -t30 -w30 $IP $PORT 2>>/dev/null ) | \
+  ( nc -n -w30 $IP $PORT 2>>/dev/null ) | \
   dd bs=1M count=5 2>>/dev/null | strings > hia-parse-proxy.tmp.$TF.azenv.gcd
   cat hia-parse-proxy.tmp.$TF.azenv.gcd | grep '^HTTP/1.[0-1]'
   if [ "`cat hia-parse-proxy.tmp.$TF.azenv.gcd | grep '^HTTP/1.[0-1]'`" == "" ]
@@ -51,6 +51,7 @@ function test_proxy_get_clearnet_domain() {
   then
     echo "hia-parse-proxy [$IP]:$PORT GCD" >> /tmp/hialog.txt
   fi
+  rm hia-parse-proxy.tmp.$TF.azenv.gcd
   return
 }
 
@@ -69,7 +70,7 @@ function test_proxy_get_clearnet_ip4() {
   echo -en "Host: cjdns.ca\r\n"
   echo -en "\r\n"
   ) | \
-  ( nc6 -n -t30 -w30 $IP $PORT 2>>/dev/null ) | \
+  ( nc -n -w30 $IP $PORT 2>>/dev/null ) | \
   dd bs=1M count=5 2>>/dev/null | strings > hia-parse-proxy.tmp.$TF.azenv.gcip4
   cat hia-parse-proxy.tmp.$TF.azenv.gcip4 | grep '^HTTP/1.[0-1]'
   if [ "`cat hia-parse-proxy.tmp.$TF.azenv.gcip4 | grep '^HTTP/1.[0-1]'`" == "" ]
@@ -96,6 +97,7 @@ function test_proxy_get_clearnet_ip4() {
   then
     echo "hia-parse-proxy [$IP]:$PORT GCIPV4" >> /tmp/hialog.txt
   fi
+  rm hia-parse-proxy.tmp.$TF.azenv.gcip4
   return
 }
 
@@ -114,7 +116,7 @@ function test_proxy_get_hype_domain() {
   echo -en "Host: cjdns.ca\r\n"
   echo -en "\r\n"
   ) | \
-  ( nc6 -n -t30 -w30 $IP $PORT 2>>/dev/null ) | \
+  ( nc -n -w30 $IP $PORT 2>>/dev/null ) | \
   dd bs=1M count=5 2>>/dev/null | strings > hia-parse-proxy.tmp.$TF.azenv.ghd
   cat hia-parse-proxy.tmp.$TF.azenv.ghd | grep '^HTTP/1.[0-1]'
   if [ "`cat hia-parse-proxy.tmp.$TF.azenv.ghd | grep '^HTTP/1.[0-1]'`" == "" ]
@@ -141,6 +143,7 @@ function test_proxy_get_hype_domain() {
   then
     echo "hia-parse-proxy [$IP]:$PORT GHD" >> /tmp/hialog.txt
   fi
+  rm hia-parse-proxy.tmp.$TF.azenv.ghd
   return
 }
 
@@ -159,7 +162,7 @@ function test_proxy_get_hype_ip6() {
   echo -en "Host: cjdns.ca\r\n"
   echo -en "\r\n"
   ) | \
-  ( nc6 -n -t30 -w30 $IP $PORT 2>>/dev/null ) | \
+  ( nc -n -w30 $IP $PORT 2>>/dev/null ) | \
   dd bs=1M count=5 2>>/dev/null | strings > hia-parse-proxy.tmp.$TF.azenv.ghip6
   cat hia-parse-proxy.tmp.$TF.azenv.ghip6 | grep '^HTTP/1.[0-1]'
   if [ "`cat hia-parse-proxy.tmp.$TF.azenv.ghip6 | grep '^HTTP/1.[0-1]'`" == "" ]
@@ -186,6 +189,7 @@ function test_proxy_get_hype_ip6() {
   then
     echo "hia-parse-proxy [$IP]:$PORT GHIP6" >> /tmp/hialog.txt
   fi
+  rm hia-parse-proxy.tmp.$TF.azenv.ghip6
   return
 }
 
@@ -201,7 +205,7 @@ do
   then
     continue
   fi
-  nc6 -nvz -t30 -w5 $IP $PORT 2>&1 | grep -q 'open$' || continue
+  nc -nvz -w15 $IP $PORT 2>&1 | grep -q 'succeeded' || continue
 #  echo "IP:$IP PORT:$PORT"
   if [ "`cat hia-parse-proxy.tried|grep -xF \"$TF GCD\"`" == "" ]
   then

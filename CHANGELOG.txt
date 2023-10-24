@@ -78,3 +78,4 @@
 20231024 ./watchlist/hia-parse-http-ipfs.sh updated.
 20231024 ./watchlist/hia-parse-http-titles.sh updated.
 20231024 ./watchlist/hia-parse-nfs.sh updated.
+20231024 ./watchlist/hia-parse-nodeinfo.sh updated.
