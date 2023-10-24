@@ -17,7 +17,6 @@ Contact:
   I don't check email often and will ignore github entirely :)
 
   Discussions, live results, more... via #HIA on HypeIRC
-   irc.hypeirc.net via irc://irc.hypeirc.net/#HIA
    hypeirc.cjdns.ca via irc://hypeirc.cjdns.ca/#HIA
    irc.cjdns.ca via irc://irc.cjdns.ca/#HIA
    http://irc.cjdns.ca for a list of HypeIRC Servers.
