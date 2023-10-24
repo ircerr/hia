@@ -25,6 +25,10 @@ cut -d\[ -f2 | cut -d\] -f1 | \
 sort -n | uniq | \
 while read IP
 do
+  if [ "`grep -F \"$IP\" hia.iplist`" == "" ]
+  then
+    continue
+  fi
   if [ "`ping6 -c 5 -i .5 -w 5 $IP 2>&1 | grep 'bytes from'`" == "" ] \
   && [ "`do_ping $IP`" == "" ]
   then
