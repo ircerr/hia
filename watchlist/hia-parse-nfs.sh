@@ -30,6 +30,10 @@ do
   then
     continue
   fi
+  if [ "`grep -F \"$IP\" hia.iplist`" == "" ]
+  then
+    continue
+  fi
 #  ping6 -c 3 -w 5 -i .5 $IP 2>&1 | grep -q icmp_seq || continue
   if [ "`nc -nvz -w30 $IP 2049 2>&1 | grep succeeded`" == "" ] \
   && [ "`nc -nvuz -w30 $IP 2049 2>&1 | grep succeeded`" == "" ]
