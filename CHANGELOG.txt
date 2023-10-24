@@ -90,3 +90,4 @@
 20231024 ./watchlist/c/walk.sh added.
 20231024 ./watchlist/c/ver-d.sh added.
 20231024 ./watchlist/c/walk2b.sh added.
+20231024 ./watchlist/c/ver-m.sh added.
