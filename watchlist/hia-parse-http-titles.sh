@@ -22,7 +22,7 @@ touch hia-parse-http-titles.tmp.fail
 # Seed URL list
 #if [ ! -f hia-parse-http-titles.tmp.urllist ]
 #then
-  wget -q -O hia-parse-http-titles.tmp.urllist http://hia.cjdns.ca/watchlist/hia.urllist
+  wget -q -U "hia-parse-http-titles" -O hia-parse-http-titles.tmp.urllist http://hia.cjdns.ca/watchlist/hia.urllist
 #fi
 
 # Check URLs
@@ -65,7 +65,7 @@ do
   else
     URL_HOST="[$URL_IP]:$URL_PORT"
   fi
-  STATUS="`nc6 -nvz -w30 -t5 $URL_IP $URL_PORT 2>&1`"
+  STATUS="`nc -nvz -w30 $URL_IP $URL_PORT 2>&1`"
 #Connection refused
 #Permission denied
   if [ "`echo \"$STATUS\"|grep 'Connection refused$\|Permission denied$'`" != "" ]
@@ -75,19 +75,20 @@ do
     continue
   fi
 #timeout while connecting
-  if [ "`echo \"$STATUS\"|grep 'timeout while connecting'`" != "" ]
+  if [ "`echo \"$STATUS\"|grep 'timeout while connecting\|timed out'`" != "" ]
   then
     echo "-$URL Skip (timeout)"
 #    echo "$URL" >> hia-parse-http-titles.tmp.closed
     continue
   fi
-  if [ "`echo \"$STATUS\"|grep 'open$'`" == "" ]
+#Unknown responce (Connection to fce1:2a4e:2214:22c1:f0fe:59af:e6b8:b8ab 1776 port [tcp/*] succeeded!)
+  if [ "`echo \"$STATUS\"|grep 'succeeded'`" == "" ]
   then
     echo "--$URL Unknown responce ($STATUS)"
     continue
   fi
   echo -en "GET $URL_PATH HTTP/1.1\r\nHost: $URL_HOST\r\nUser-Agent: hia-parse-http-titles.sh/0.01 (HIA)\r\nAccept: */*\r\nReferer: http://hia.cjdns.ca/watchlist/hia-parse-http-titles.sh\r\nConnection: close\r\n\r\n" | \
-  nc6 -n -w30 -t5 $URL_IP $URL_PORT 2>>/dev/null | \
+  nc -n -w30 $URL_IP $URL_PORT 2>>/dev/null | \
   dd bs=1M count=5 2>>/dev/null | strings > hia-parse-http-titles.tmp.$URL_FB.get
   if [ "`cat hia-parse-http-titles.tmp.$URL_FB.get`" == "" ]
   then
