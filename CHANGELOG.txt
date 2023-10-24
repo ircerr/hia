@@ -92,3 +92,4 @@
 20231024 ./watchlist/c/walk2b.sh added.
 20231024 ./watchlist/c/ver-m.sh added.
 20231024 ./watchlist/c/counts.sh added.
+20231024 ./watchlist/c/walk2c.sh added.
