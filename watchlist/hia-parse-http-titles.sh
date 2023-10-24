@@ -20,10 +20,9 @@ touch hia-parse-http-titles.tmp.closed
 touch hia-parse-http-titles.tmp.fail
 
 # Seed URL list
-#if [ ! -f hia-parse-http-titles.tmp.urllist ]
-#then
-  wget -q -U "hia-parse-http-titles" -O hia-parse-http-titles.tmp.urllist http://hia.cjdns.ca/watchlist/hia.urllist
-#fi
+wget -q -U "hia-parse-http-titles" -O hia-parse-http-titles.tmp.urllist http://hia.cjdns.ca/watchlist/hia.urllist
+# Live IP list
+wget -q -U "hia-parse-http-titles" -O hia-parse-http-titles.tmp.iplist http://hia.cjdns.ca/watchlist/hia.iplist
 
 # Check URLs
 cat hia-parse-http-titles.tmp.urllist | \
@@ -64,6 +63,10 @@ do
     URL_HOST="[$URL_IP]"
   else
     URL_HOST="[$URL_IP]:$URL_PORT"
+  fi
+  if [ "`grep -F $URL_IP hia-parse-htt-titles.tmp.iplist`" == "" ]
+  then
+    continue
   fi
   STATUS="`nc -nvz -w30 $URL_IP $URL_PORT 2>&1`"
 #Connection refused
