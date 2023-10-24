@@ -20,6 +20,11 @@ touch hia.urllist
 touch hia-parse-http.tried
 mkdir -p data/
 
+TS="`date -u +%Y%m%d`"
+wget -qN "http://hia.cjdns.ca/watchlist/c/walk.peers.$TS" -O - | \
+tr ' ' '\n' | sort -n | uniq > hia-parse-http.tmp.peers
+
+
 #Functions
 function padip() {  #Pad IP - fill in missing zeros
   ip=$1
@@ -71,6 +76,10 @@ do
   #Pad IPV6 to include missing zeros
   IP="`padip $IP`"
   #Remove :'s for file/dir name usage
+  if [ "`grep \"$IP\" hia-parse-http.tmp.peers`" == "" ]
+  then
+    continue
+  fi
   BIP="`echo $IP|tr -d ':'`"
   if [ "`ping6 -c 5 -i .5 -w 5 $IP 2>&1 | grep 'bytes from'`" == "" ]
   then
@@ -117,7 +126,7 @@ do
     fi
     #Send HTTP request to IP:PORT
     echo -en "GET / HTTP/1.1\r\nHost: [$IP]\r\nUser-Agent: hia-parse-http (ircerr@EFNet)\r\nAccept: */*\r\nReferer: http://hia.cjdns.ca/\r\nConnection: close\r\n\r\n" | \
-    nc6 -n -w30 --idle-timeout=10 $IP $PORT 2>>/dev/null | \
+    nc -n -w30 $IP $PORT 2>>/dev/null | \
     dd bs=1M count=5 2>>/dev/null | strings > hia-parse-http.tmp.$IP.$PORT.get
     #Check for NO data in responce
     if [ "`cat hia-parse-http.tmp.$IP.$PORT.get`" == "" ]
