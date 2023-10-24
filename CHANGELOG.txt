@@ -97,3 +97,4 @@
 20231024 ./watchlist/c/walk2.sh added.
 20231024 ./watchlist/c/shame.sh added.
 20231024 ./test/d3map/d3map.sh added.
+20231024 ./test/d3map/d3.v3.min.js added.
