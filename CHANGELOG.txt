@@ -87,3 +87,4 @@
 20231024 ./watchlist/pubk.sh added.
 20231024 ./watchlist/c/l.sh added.
 20231024 ./watchlist/c/top.sh added.
+20231024 ./watchlist/c/walk.sh added.
