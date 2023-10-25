@@ -16,16 +16,10 @@ rm hia-parse-http-titles.tmp.* 2>>/dev/null
 touch hia-parse-http-titles.db.urllist
 touch hia-parse-http-titles.db.titles
 touch hia-parse-http-titles.db.domains
-touch hia-parse-http-titles.tmp.closed
-touch hia-parse-http-titles.tmp.fail
-
-# Seed URL list
-wget -q -U "hia-parse-http-titles" -O hia-parse-http-titles.tmp.urllist http://hia.cjdns.ca/watchlist/hia.urllist
-# Live IP list
-wget -q -U "hia-parse-http-titles" -O hia-parse-http-titles.tmp.iplist http://hia.cjdns.ca/watchlist/hia.iplist
+touch hia-parse-http-titles.tried
 
 # Check URLs
-cat hia-parse-http-titles.tmp.urllist | \
+cat hia.urllist | \
 sort | \
 while read URL
 do
@@ -33,7 +27,7 @@ do
   then
     continue
   fi
-  if [ "`grep -Fx \"$URL\" hia-parse-http-titles.tmp.closed hia-parse-http-titles.tmp.fail`" != "" ]
+  if [ "`grep -Fx \"$URL\" hia-parse-http-titles.tried`" != "" ]
   then
     continue
   fi
@@ -64,7 +58,7 @@ do
   else
     URL_HOST="[$URL_IP]:$URL_PORT"
   fi
-  if [ "`grep -F $URL_IP hia-parse-htt-titles.tmp.iplist`" == "" ]
+  if [ "`grep -F $URL_IP hia.iplist`" == "" ]
   then
     continue
   fi
@@ -74,14 +68,14 @@ do
   if [ "`echo \"$STATUS\"|grep 'Connection refused$\|Permission denied$'`" != "" ]
   then
     echo "-$URL Skip (refused)"
-    echo "$URL" >> hia-parse-http-titles.tmp.closed
+    echo "$URL" >> hia-parse-http-titles.tried
     continue
   fi
 #timeout while connecting
   if [ "`echo \"$STATUS\"|grep 'timeout while connecting\|timed out'`" != "" ]
   then
     echo "-$URL Skip (timeout)"
-#    echo "$URL" >> hia-parse-http-titles.tmp.closed
+#    echo "$URL" >> hia-parse-http-titles.tried
     continue
   fi
 #Unknown responce (Connection to fce1:2a4e:2214:22c1:f0fe:59af:e6b8:b8ab 1776 port [tcp/*] succeeded!)
@@ -97,26 +91,28 @@ do
   then
     echo "-[$URL_IP]:$URL_PORT did not return any data"
     rm hia-parse-http-titles.tmp.$URL_FB.get
+    echo "$URL" >> hia-parse-http-titles.tried
     continue
   fi
   if [ "`cat hia-parse-http-titles.tmp.$URL_FB.get|grep 'HTTP/1.[0-1]'`" == "" ]
   then
     echo "-[$URL_IP]:$URL_PORT Not HTTP/1.x"
     rm hia-parse-http-titles.tmp.$URL_FB.get
+    echo "$URL" >> hia-parse-http-titles.tried
     continue
   fi
   if [ "`cat hia-parse-http-titles.tmp.$URL_FB.get|tr -d '\r'|grep -i 'plain http request was sent to https port'`" != "" ]
   then
     echo "-[$URL_IP]:$URL_PORT is HTTPS not HTTP"
     rm hia-parse-http-titles.tmp.$URL_FB.get
-    echo "$URL" >> hia-parse-http-titles.tmp.fail
+    echo "$URL" >> hia-parse-http-titles.tried
     continue
   fi
   if [ "`cat hia-parse-http-titles.tmp.$URL_FB.get|grep '^HTTP/1.[0-1] 200'`" == "" ]
   then
     echo "-[$URL_IP]:$URL_PORT Not HTTP/1.x 200"
     rm hia-parse-http-titles.tmp.$URL_FB.get
-    echo "$URL" >> hia-parse-http-titles.tmp.fail
+    echo "$URL" >> hia-parse-http-titles.tried
     continue
   fi
   T="`cat hia-parse-http-titles.tmp.$URL_FB.get|strings|tr '\n' ' '|grep -i '<title>'|sed 's/.*<title>//gi'|cut -d\< -f1`"
@@ -141,6 +137,7 @@ do
   else
     echo "--$URL No title detected"
   fi
+  echo "$URL" >> hia-parse-http-titles.tried
 done
 echo
 
