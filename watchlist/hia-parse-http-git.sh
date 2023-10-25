@@ -122,6 +122,7 @@ rm hia-parse-http-git.tmp.* 2>>/dev/null
 echo "<html><body><pre>"
 cat hia-parse-http-git.found | sort | \
 while read URL REPO
+do
   echo "$URL <a href=\"$REPO\">$REPO</a>"
 done
 echo "</pre></body></html>"

@@ -112,3 +112,4 @@
 20231024 ./watchlist/hia-parse-ssl.sh updated.
 20231024 ./watchlist/hia-parse-ver.sh updated.
 20231024 ./watchlist/hia-parse-http-git.sh updated.
+20231025 ./watchlist/hia-parse-http-titles.sh updated.
