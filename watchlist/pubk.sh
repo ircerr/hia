@@ -15,10 +15,10 @@
 #zone "k.db.cjdns.ca" {
 #        type master;
 #        notify 0;
-#        file "/etc/bind/k.db.cjdns.ca";
+#        file "/etc/bind/db.k.db.cjdns.ca";
 #};
 
-# /etc/bind/k.db.cjdns.ca
+# /etc/bind/db.k.db.cjdns.ca
 #$ORIGIN k.db.cjdns.ca.
 #$TTL 86400
 #@       IN      SOA     ns1.cjdns.ca. root.cjdns.ca. (
@@ -45,7 +45,7 @@ cat c/walk.pubkey | \
 while read PUBK IP
 do
 #  echo "PUBK:$PUBK IP:$IP"
-  AAAAL="`grep \"$PUBK IN AAAA $IP$\" /etc/bind/k.db.cjdns.ca`"
+  AAAAL="`grep \"$PUBK IN AAAA $IP$\" /etc/bind/db.k.db.cjdns.ca`"
   if [ "$AAAAL" == "" ]
   then
     echo -en "$PUBK IN AAAA $IP\n" >> pubk.new
@@ -53,12 +53,12 @@ do
   VER="`grep \"$PUBK\" c/walk.version|cut -d\. -f1|grep ^v`"
   if [ "$VER" != "" ]
   then
-    VERL="`grep \"$PUBK IN TXT VERSION\" /etc/bind/k.db.cjdns.ca`"
+    VERL="`grep \"$PUBK IN TXT VERSION\" /etc/bind/db.k.db.cjdns.ca`"
     if [ "$VERL" != "" ]
     then
       if [ "$VERL" != "$PUBK IN TXT VERSION $VER" ]
       then
-        sed -i "s/$VERL/$PUBK IN TXT VERSION $VER/g" /etc/bind/k.db.cjdns.ca
+        sed -i "s/$VERL/$PUBK IN TXT VERSION $VER/g" /etc/bind/db.k.db.cjdns.ca
       fi
     else
       echo -en "$PUBK IN TXT VERSION $VER\n" >> pubk.new
@@ -71,20 +71,20 @@ done
 echo "-Adding `wc -l pubk.new|cut -d\  -f1`"
 if [ "`head -n5 pubk.new`" != "" ]
 then
-#/etc/bind/k.db.cjdns.ca:                     2016112701      ; Serial
-  ST="`cat /etc/bind/k.db.cjdns.ca|grep 'Serial$'|tr -d ' \|\t'|cut -d\; -f1|cut -b -8`"
+#/etc/bind/db.k.db.cjdns.ca:                     2016112701      ; Serial
+  ST="`cat /etc/bind/db.k.db.cjdns.ca|grep 'Serial$'|tr -d ' \|\t'|cut -d\; -f1|cut -b -8`"
   DS="`date -u +%Y%m%d`"
   if [ "$ST" == "$DS" ]
   then
-    SI="`cat /etc/bind/k.db.cjdns.ca|grep 'Serial$'|tr -d ' \|\t'|cut -d\; -f1|cut -b 9-|sed 's/^0//g'`"
+    SI="`cat /etc/bind/db.k.db.cjdns.ca|grep 'Serial$'|tr -d ' \|\t'|cut -d\; -f1|cut -b 9-|sed 's/^0//g'`"
   else
     SI="0"
   fi
   SI=$(($SI+1))
   if [ ${#SI} -lt 2 ]; then SI="0$SI"; fi
   echo "-ST:\"$ST\" DS:\"$DS\" SI:\"$SI\""
-  sed -i "s/[0-9][0-9][0-9][0-9].*; Serial$/$DS$SI ; Serial/g" /etc/bind/k.db.cjdns.ca
-  cat pubk.new >> /etc/bind/k.db.cjdns.ca
+  sed -i "s/[0-9][0-9][0-9][0-9].*; Serial$/$DS$SI ; Serial/g" /etc/bind/db.k.db.cjdns.ca
+  cat pubk.new >> /etc/bind/db.k.db.cjdns.ca
   service bind9 reload
 fi
 tail -n5 pubk.new
