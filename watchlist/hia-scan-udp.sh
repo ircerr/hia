@@ -80,7 +80,7 @@ function do_scan () {
   echo -n > data/$BIP.udp.nmap
  (
   nmap -PN -T5 -v -6 $IP -sU -r -n --host-timeout $((60*60*48))s \
-  $PORTSCMD --open -oG data/$BIP.udp.oG &> data/$BIP.udp.log
+  $PORTSCMD -oG data/$BIP.udp.oG &> data/$BIP.udp.log
   PING="`ping6 -c 5 -i .5 -w 10 $IP 2>&1 | grep 'bytes from'`"
   if [ "$PING" == "" ]
   then
@@ -113,7 +113,7 @@ function do_scan () {
     rm data/$BIP.udp.log data/$BIP.udp.oG
     return
   fi
-  H="`cat data/$BIP.udp.oG | grep ^Host | cut -d\  -f2-|grep '/open/'`"
+  H="`cat data/$BIP.udp.oG | grep ^Host | cut -d\  -f2-|grep '/open'`"
   if [ "$H" == "" ]
   then
     echo "DONE $IP UDP [no open ports]" >> data/$BIP.udp.nmap
