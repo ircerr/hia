@@ -80,7 +80,7 @@ function do_scan () {
   echo -n > data/$BIP.tcp.nmap
  (
   nmap -PN -T5 -v -6 $IP -sT -r -n --host-timeout $((60*60*24))s \
-  $PORTSCMD --open -oG data/$BIP.tcp.oG &> data/$BIP.tcp.log
+  $PORTSCMD -oG data/$BIP.tcp.oG &> data/$BIP.tcp.log
   PING="`ping6 -c 5 -i .5 -w 10 $IP 2>&1 | grep 'bytes from'`"
   if [ "$PING" == "" ]
   then
@@ -113,7 +113,7 @@ function do_scan () {
     rm data/$BIP.tcp.log data/$BIP.tcp.oG
     return
   fi
-  H="`cat data/$BIP.tcp.oG | grep ^Host | cut -d\  -f2-|grep '/open/'`"
+  H="`cat data/$BIP.tcp.oG | grep ^Host | cut -d\  -f2-|grep '/open'`"
   if [ "$H" == "" ]
   then
     echo "DONE $IP TCP [no open ports]" >> data/$BIP.tcp.nmap
