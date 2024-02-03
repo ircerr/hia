@@ -116,3 +116,4 @@
 20231025 ./watchlist/hia-parse-http-git.sh updated.
 20231106 ./watchlist/c/shame.sh updated.
 20231203 ./watchlist/pubk.sh updated.
+20240203 ./watchlist/hia-scan-udp.sh updated.
