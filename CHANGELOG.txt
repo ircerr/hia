@@ -118,3 +118,4 @@
 20231203 ./watchlist/pubk.sh updated.
 20240203 ./watchlist/hia-scan-udp.sh updated.
 20240203 ./watchlist/hia-scan-tcp.sh updated.
+20240203 ./watchlist/hia-scan-udp.sh updated.
