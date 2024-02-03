@@ -267,7 +267,7 @@ do
   if [ -f data/$BIP.udp.oG ]
   then
     TSO=$((`date -u +%s`-`date -u -r data/$BIP.udp.oG +%s`))
-    if [ $TSO -lt $((60*60*24*30)) ] # repeat after 30 days
+    if [ $TSO -lt $((60*60*24*7)) ] # repeat after 7 days
     then
 #      echo "-$IP exists as data/$BIP.udp.oG -${TSO}s old -Skipping."
       continue
