@@ -16,7 +16,7 @@ do
     echo "$IP $ID" | tee -a hia-parse-http-cjdradio.found
     if [ -f /tmp/hialog.txt ]
     then
-      echo "hia-parse-http-cjdns $IP -> $ID added." >> /tmp/hialog.txt
+      echo "hia-parse-http-cjdradio $IP -> $ID added." >> /tmp/hialog.txt
     fi
   fi
 done
