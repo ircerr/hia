@@ -123,3 +123,4 @@
 20240210 ./watchlist/hia-parse-http-cjdradio.sh updated.
 20240229 ./watchlist/hia-parse-http-cjdradio.sh updated.
 20240229 ./watchlist/hia-parse-nntp.sh added.
+20240229 ./watchlist/hia-parse-nntp.sh updated.
