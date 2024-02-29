@@ -41,6 +41,7 @@ do
   then
     continue
   fi
+  echo "$IP $ID" >> hia-parse-nntp.found
   if [ -f /tmp/hialog.txt ]
   then
     echo "hia-parse-nntp $IP -> $ID added." >> /tmp/hialog.txt
