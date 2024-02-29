@@ -9,6 +9,7 @@ while read LINE
 do
 #[fc74:68c3:8225:bb21:b981:9826:ca32:723c]:55227 TCP
   IP="`echo \"$LINE\"|cut -d\[ -f2|cut -d\] -f1`"
+  grep -q "$IP" hia.iplist || continue
   grep -q "$IP" hia-parse-http-cjdradio.found && continue
   ID="`curl -s http://[$IP]:55227/id`"
   if [ "$ID" != "" ]
