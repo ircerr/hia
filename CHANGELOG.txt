@@ -121,3 +121,4 @@
 20240203 ./watchlist/hia-scan-udp.sh updated.
 20240210 ./watchlist/hia-parse-http-cjdradio.sh added.
 20240210 ./watchlist/hia-parse-http-cjdradio.sh updated.
+20240229 ./watchlist/hia-parse-http-cjdradio.sh updated.
