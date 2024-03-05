@@ -113,7 +113,7 @@ function do_scan () {
     rm data/$BIP.udp.log data/$BIP.udp.oG
     return
   fi
-  H="`cat data/$BIP.udp.oG | grep ^Host | cut -d\  -f2-|grep '/open'`"
+  H="`cat data/$BIP.udp.oG | grep ^Host | cut -d\  -f2-|grep '/open/'`"
   if [ "$H" == "" ]
   then
     echo "DONE $IP UDP [no open ports]" >> data/$BIP.udp.nmap
@@ -121,7 +121,7 @@ function do_scan () {
     return
   fi
 #  echo "H:$H" >> data/$BIP.udp.nmap
-  PORTS="`echo $H|sed 's/.*Ports: //g'|tr ',' '\n'|grep open|cut -d\/ -f1|tr '\n' ' '|sed 's/  / /g'|sed 's/ $//g'`"
+  PORTS="`echo $H|sed 's/.*Ports: //g'|tr ',' '\n'|grep '/open/'|cut -d\/ -f1|tr '\n' ' '|sed 's/  / /g'|sed 's/ $//g'`"
 #  echo "PORTS:$PORTS" >> data/$BIP.udp.nmap
   for PORT in $PORTS
   do
@@ -139,7 +139,7 @@ function do_scan () {
 #      continue
 #    fi
   done
-  echo "DONE $IP UDP [`echo $H|sed 's/.*Ports: //g'|tr ',' '\n'|grep open|cut -d\/ -f1|wc -l` open ports]" >>data/$BIP.udp.nmap
+  echo "DONE $IP UDP [`echo $H|sed 's/.*Ports: //g'|tr ',' '\n'|grep '/open/'|cut -d\/ -f1|wc -l` open ports]" >>data/$BIP.udp.nmap
   ) &>/dev/null &
   return
 }
