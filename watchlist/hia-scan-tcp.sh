@@ -113,7 +113,7 @@ function do_scan () {
     rm data/$BIP.tcp.log data/$BIP.tcp.oG
     return
   fi
-  H="`cat data/$BIP.tcp.oG | grep ^Host | cut -d\  -f2-|grep '/open'`"
+  H="`cat data/$BIP.tcp.oG | grep ^Host | cut -d\  -f2-|grep '/open/'`"
   if [ "$H" == "" ]
   then
     echo "DONE $IP TCP [no open ports]" >> data/$BIP.tcp.nmap
@@ -121,7 +121,7 @@ function do_scan () {
     return
   fi
 #  echo "H:$H" >> data/$BIP.tcp.nmap
-  PORTS="`echo $H|sed 's/.*Ports: //g'|tr ',' '\n'|grep open|cut -d\/ -f1|tr '\n' ' '|sed 's/  / /g'|sed 's/ $//g'`"
+  PORTS="`echo $H|sed 's/.*Ports: //g'|tr ',' '\n'|grep '/open/'|cut -d\/ -f1|tr '\n' ' '|sed 's/  / /g'|sed 's/ $//g'`"
 #  echo "PORTS:$PORTS" >> data/$BIP.tcp.nmap
   for PORT in $PORTS
   do
@@ -139,7 +139,7 @@ function do_scan () {
 #      continue
 #    fi
   done
-  echo "DONE $IP TCP [`echo $H|sed 's/.*Ports: //g'|tr ',' '\n'|grep open|cut -d\/ -f1|wc -l` open ports]" >>data/$BIP.tcp.nmap
+  echo "DONE $IP TCP [`echo $H|sed 's/.*Ports: //g'|tr ',' '\n'|grep '/open/'|cut -d\/ -f1|wc -l` open ports]" >>data/$BIP.tcp.nmap
   ) &>/dev/null &
   return
 }
