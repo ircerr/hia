@@ -125,3 +125,4 @@
 20240229 ./watchlist/hia-parse-nntp.sh added.
 20240229 ./watchlist/hia-parse-nntp.sh updated.
 20240305 ./watchlist/hia-scan-tcp.sh updated.
+20240305 ./watchlist/hia-scan-udp.sh updated.
