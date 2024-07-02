@@ -30,7 +30,7 @@ do
   then
     continue
   fi
-  if [ "`cat hia-parse-ssh.tried|grep -x \"$IP $PORT\"`" != "" ]
+  if [ "`cat hia-parse-ssh.tried|grep \"^$IP $PORT$\"`" != "" ]
   then
     continue
   fi
@@ -38,25 +38,47 @@ do
   then
     continue
   fi
-  if [ "`ping6 -c 5 -i .5 -w 5 $IP 2>&1 | grep 'bytes from'`" == "" ] \
-  && [ "`do_ping $IP`" == "" ]
+#  if [ "`ping6 -c 5 -i .5 -w 5 $IP 2>&1 | grep 'bytes from'`" == "" ] \
+#  && [ "`do_ping $IP`" == "" ]
+#  then
+#    continue
+#  fi
+  echo "$IP $PORT" >> hia-parse-ssh.tried
+  touch hia-parse-ssh.tmp
+  nc -nv -w15 $IP $PORT 2>&1 | strings > hia-parse-ssh.tmp
+  if [ "`cat hia-parse-ssh.tmp | grep 'succeeded'`" == "" ]
   then
+   rm hia-parse-ssh.tmp
+   continue
+  fi
+  if [ "`cat hia-parse-ssh.tmp | grep -v 'Connection to'`" == "" ]
+  then
+   rm hia-parse-ssh.tmp
+   continue
+  fi
+  echo "-Testing IP:$IP PORT:$PORT"
+  echo "$IP $PORT VERSION: `cat hia-parse-ssh.tmp | grep -v '^$' | grep -v 'Connection to' | tr '\n' '|' | sed 's/|$//g'`" >>hia-parse-ssh.found
+  echo "VERSION: `cat hia-parse-ssh.tmp | grep -v '^$' | grep -v 'Connection to' | tr '\n' '|' | sed 's/|$//g'`"
+  if [ -f /tmp/hialog.txt ]
+  then
+    echo "hia-parse-ssh $IP $PORT VERSION: `cat hia-parse-ssh.tmp | grep -v '^$' | grep -v 'Connection to' | tr '\n' '|' | sed 's/|$//g'`" \
+    >> /tmp/hialog.txt
+  fi
+  nmap -sT -PN -6 -n -p$PORT $IP --script=+ssh-hostkey &>hia-parse-ssh.tmp
+  if [ "`cat hia-parse-ssh.tmp|grep 'ERROR'`" != "" ]
+  then
+    echo "-ERROR"
+    rm hia-parse-ssh.tmp
     continue
   fi
-  nc -nvz -w15 $IP $PORT 2>&1 | grep -q 'succeeded' || continue
-  echo "$IP $PORT" >> hia-parse-ssh.tried
-  echo "IP:$IP PORT:$PORT"
-  nmap -sT -PN -6 -n -p$PORT $IP --script=+ssh-hostkey &>hia-parse-ssh.tmp
   if [ "`cat hia-parse-ssh.tmp|grep '^|'|grep ssh-hostkey`" == "" ]
   then
-    echo "-FAIL"
+    echo "-FAIL (no ssh-hostkey)"
     cat hia-parse-ssh.tmp
     rm hia-parse-ssh.tmp
     continue
   fi
-#|_ssh-hostkey: 2048 9b:7b:10:09:7b:ca:5a:c0:c7:65:f4:ae:f1:a4:36:1a (RSA)
-  cat hia-parse-ssh.tmp | grep '^|' | sed 's/^| ssh-hostkey: /|_/g' | \
-  sed 's/^|_ssh-hostkey: /|_/g' | sed 's/^|_//g' | \
+  cat hia-parse-ssh.tmp | grep -v 'ssh-hostkey' | grep '^|' | cut -b 5- | \
   while read KEY
   do
     echo "-Found: $KEY"
