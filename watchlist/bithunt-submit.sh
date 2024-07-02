@@ -1,4 +1,5 @@
 #!/bin/bash
+exit
 
 # bithunt-submit.sh
 # Submit URLs to bithunt
