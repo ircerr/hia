@@ -127,3 +127,4 @@
 20240305 ./watchlist/hia-scan-tcp.sh updated.
 20240305 ./watchlist/hia-scan-udp.sh updated.
 20240702 ./watchlist/bithunt-submit.sh updated.
+20240702 ./watchlist/hia-parse-ssh.sh updated.
