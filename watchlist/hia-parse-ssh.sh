@@ -78,7 +78,7 @@ do
     rm hia-parse-ssh.tmp
     continue
   fi
-  cat hia-parse-ssh.tmp | grep -v 'ssh-hostkey' | grep '^|' | cut -b 5- | \
+  cat hia-parse-ssh.tmp | grep -v 'ssh-hostkey\|Invalid SSH identification' | grep '^|' | cut -b 5- | \
   while read KEY
   do
     echo "-Found: $KEY"
