@@ -129,3 +129,4 @@
 20240702 ./watchlist/bithunt-submit.sh updated.
 20240702 ./watchlist/hia-parse-ssh.sh updated.
 20240703 ./watchlist/hia-parse-ssh.sh updated.
+20240705 ./watchlist/hia-parse-http-ak.sh added.
