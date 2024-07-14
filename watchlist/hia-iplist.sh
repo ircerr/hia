@@ -53,7 +53,13 @@ then
   echo -n > hia.iplist.walk
   wget -q -T15 -t3 -U "`basename $0|sed 's/.sh$//g'`" -O - \
   http://hia.cjdns.ca/watchlist/c/walk.peers.`date -u +%Y%m%d` | \
-  tr ' ' '\n' | grep '^fc' | sort | uniq > hia.iplist.walk
+  tr ' ' '\n' | grep '^fc' | sort | uniq > hia.iplist.walk.new
+  if [ "`head hia.iplist.walk.new`" != "" ]
+  then
+    mv hia.iplist.walk.new hia.iplist.walk
+  else
+   rm hia.iplist.walk.new
+  fi
 else
   echo -n "-Using cached WALK IPV6 list..."
 fi
