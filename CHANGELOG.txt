@@ -132,3 +132,4 @@
 20240705 ./watchlist/hia-parse-http-ak.sh added.
 20240714 ./watchlist/hia-iplist.sh updated.
 20240803 ./watchlist/hia-parse-http-log.sh added.
+20240804 ./watchlist/hia-parse-http-log.sh updated.
