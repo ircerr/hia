@@ -61,26 +61,13 @@ then
    rm hia.iplist.walk.new
   fi
 else
-  echo -n "-Using cached WALK IPV6 list..."
+  echo -n " -Using cached list..."
 fi
 WALK_F=$((`cat hia.iplist.walk|wc -l`))
 echo -n " Found $WALK_F IPs"
-echo -n > hia.iplist.walk.new
 
-#cat hia.iplist.walk | \
-#while read IP
-#do
-#  if [ "`grep -Hx \"$IP\" hia.iplist hia.iplist.walk.new`" == "" ]
-#  then
-#    echo "$IP" >> hia.iplist.walk.new
-#  else
-#    echo "DUPE: $IP"
-#  fi
-#done
-
-cat hia.iplist.walk >> hia.iplist.walk.new
+cat hia.iplist.walk | grep -xvf hia.iplist > hia.iplist.walk.new
 WALK_N=$((`cat hia.iplist.walk.new|wc -l`))
-cat hia.iplist.walk.new >> hia.iplist.new
 rm hia.iplist.walk.new
 echo " $WALK_N NEW IPs added"
 if [ -f /tmp/hialog.txt ]
@@ -88,7 +75,8 @@ then
   echo "hia-iplist WALK $WALK_F IPs found, $WALK_N New IPs added." >> /tmp/hialog.txt
 fi
 
-mv hia.iplist.new hia.iplist
+mv hia.iplist.walk hia.iplist
+
 echo -n > hia.iplist.new
 cat hia.iplist | sort | uniq | \
 while read IP
