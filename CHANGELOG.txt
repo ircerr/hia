@@ -135,3 +135,4 @@
 20240804 ./watchlist/hia-parse-http-log.sh updated.
 20240804 ./watchlist/hia-parse-http-referer.sh added.
 20240809 ./watchlist/hia-iplist.sh updated.
+20240810 ./watchlist/hia-iplist.sh updated.
