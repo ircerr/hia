@@ -137,3 +137,4 @@
 20240809 ./watchlist/hia-iplist.sh updated.
 20240810 ./watchlist/hia-iplist.sh updated.
 20240810 ./watchlist/hia-iplist.sh updated.
+20240810 ./watchlist/hia-parse-stats.sh added.
