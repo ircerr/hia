@@ -65,6 +65,15 @@ fi
 WALK_F=$((`cat hia.iplist.walk|wc -l`))
 echo -n " Found $WALK_F IPs"
 
+echo -n > hia.iplist.walk.new
+cat hia.iplist.walk | sort | uniq | \
+while read IP
+do
+  IP="`padip $IP`"
+  echo "$IP" >> hia.iplist.walk.new
+done
+mv hia.iplist.walk.new hia.iplist.walk
+
 cat hia.iplist.walk | grep -xvf hia.iplist.all > hia.iplist.walk.new
 WALK_N=$((`cat hia.iplist.walk.new|wc -l`))
 rm hia.iplist.walk.new
