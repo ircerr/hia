@@ -139,3 +139,4 @@
 20240810 ./watchlist/hia-iplist.sh updated.
 20240810 ./watchlist/hia-parse-stats.sh added.
 20240812 ./watchlist/hia-parse-stats.sh updated.
+20240818 ./watchlist/hia-parse-http-referer.sh updated.

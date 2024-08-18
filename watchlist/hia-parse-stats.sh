@@ -1,5 +1,6 @@
 #!/bin/bash
 
+exit
 cd /var/www/hia/watchlist/ || exit 1
 
 TCP_FILES="`find data/ -type f -name '*.tcp.nmap'|wc -l`"
