@@ -3,8 +3,7 @@
 touch hia-parse-http-referer.db
 
 grep peers.txt \
-/var/log/lighttpd/cjdns.ca.access.log \
-/var/log/lighttpd/hia.cjdns.ca.access.log | \
+/var/log/lighttpd/cjdns.ca.access.log | \
 cut -d\" -f4 | grep -v '^-$' | sort | uniq | \
 while read U
 do
