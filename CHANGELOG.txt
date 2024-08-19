@@ -141,3 +141,4 @@
 20240812 ./watchlist/hia-parse-stats.sh updated.
 20240818 ./watchlist/hia-parse-http-referer.sh updated.
 20240818 ./watchlist/hia-parse-stats.sh updated.
+20240819 ./watchlist/hia-scan-tcp.sh updated.
