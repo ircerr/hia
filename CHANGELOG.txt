@@ -151,3 +151,4 @@
 20240902 ./watchlist/hia-parse-ssh.sh updated.
 20240902 ./watchlist/hia-parse-ssl.sh updated.
 20240902 ./watchlist/hia-parse-ver.sh updated.
+20240902 ./watchlist/hia-scan-tcp.sh updated.
