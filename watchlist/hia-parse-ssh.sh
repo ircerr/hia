@@ -64,7 +64,7 @@ do
     echo "hia-parse-ssh $IP $PORT VERSION: `cat hia-parse-ssh.tmp | grep -v '^$' | grep -v 'Connection to' | tr '\n' '|' | sed 's/|$//g'`" \
     >> /tmp/hialog.txt
   fi
-  nmap -sT -PN -6 --allports -n -p$PORT $IP --script=+ssh-hostkey &>hia-parse-ssh.tmp
+  nmap -sT -PN -6 -n -p$PORT $IP --script=+ssh-hostkey &>hia-parse-ssh.tmp
   if [ "`cat hia-parse-ssh.tmp|grep 'ERROR'`" != "" ]
   then
     echo "-ERROR"
