@@ -46,7 +46,7 @@ do
     if [ "`cat hia-parse-ver.found 2>>/dev/null|grep \"^$IP $PORT TCP \"`" == "" ]
     then
       echo -n "$IP $PORT TCP "
-      nmap -n -6 -PN -sT --allports -p $PORT $IP -sV -oG - 2>&1 | \
+      nmap -n -6 -PN -sT -p $PORT $IP -sV -oG - 2>&1 | \
       grep 'Ports:'|sed 's/.*Ports: //g' | tee hia-parse-ver.portlist.tmp \
       || echo ERR
       if [ "`cat hia-parse-ver.portlist.tmp|grep -v '^$\|/closed/\|/tcpwrapped/'`" != "" ]
@@ -79,7 +79,7 @@ do
     if [ "`cat hia-parse-ver.found 2>>/dev/null|grep \"^$IP $PORT UDP \"`" == "" ]
     then
       echo -n "$IP $PORT UDP "
-      nmap -n -6 -PN -sU --allports -p $PORT $IP -sV -oG - 2>&1 | \
+      nmap -n -6 -PN -sU -p $PORT $IP -sV -oG - 2>&1 | \
       grep 'Ports:'|sed 's/.*Ports: //g' | tee hia-parse-ver.portlist.tmp \
       || echo ERR
       if [ "`cat hia-parse-ver.portlist.tmp|grep -v '^$\|/closed/\|/tcpwrapped/'`" != "" ]
