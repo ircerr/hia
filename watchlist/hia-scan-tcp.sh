@@ -79,7 +79,7 @@ function do_scan () {
   fi
   echo -n > data/$BIP.tcp.nmap
  (
-  nmap -PN -v -6 --allports -p1-65535 $IP -sT -r -n --host-timeout $((60*60*24*7))s \
+  nmap -Pn -v -6 --allports $IP -sT -r -n --host-timeout $((60*60*24*7))s \
   $PORTSCMD -oG data/$BIP.tcp.oG &> data/$BIP.tcp.log
   PING="`ping6 -c 5 -i .5 -w 10 $IP 2>&1 | grep 'bytes from'`"
   if [ "$PING" == "" ]
