@@ -48,7 +48,7 @@ do
   nc -nvz -w15 $IP $PORT 2>&1 | grep -q 'succeeded' || continue
   echo "$IP $PORT" >> hia-parse-ssl.tried
   echo "IP:$IP PORT:$PORT"
-  nmap -sT -PN -6 --allports -n -p$PORT $IP --script=+ssl-cert &>hia-parse-ssl.tmp
+  nmap -sT -PN -6 -n -p$PORT $IP --script=+ssl-cert &>hia-parse-ssl.tmp
 #| ssl-cert: Subject: commonName=*.tuxli.ch
 #| MD5:   c9f9 9ac7 90c7 b6c2 f472 70ba 4930 cb9a
 #|_SHA-1: 1105 8a21 fa1f c1c9 665e 5a0b ced0 8ae1 f218 04ec
