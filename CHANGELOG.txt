@@ -156,3 +156,4 @@
 20240902 ./watchlist/hia-scan-tcp.sh updated.
 20240902 ./watchlist/hia-scan-udp.sh updated.
 20240908 ./watchlist/hia-scan-udp.sh updated.
+20241005 ./watchlist/hia-parse-http-ak.sh updated.
