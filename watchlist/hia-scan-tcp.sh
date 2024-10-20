@@ -181,7 +181,7 @@ cd /var/www/hia/watchlist/ || exit 1
 (
 echo "hia-scan-tcp begins."
 
-MAXBG=30
+MAXBG=15
 
 touch hia.iplist
 touch hia.portlist
