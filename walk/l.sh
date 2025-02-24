@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /var/www/yia/walk/ || exit 1
+
 while :;
 do
   ./walk.sh
