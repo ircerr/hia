@@ -162,3 +162,4 @@
 20250224 ./walk/l.sh added.
 20250224 ./walk/top.sh added.
 20250224 ./walk/walk.sh added.
+20250224 ./walk/ver-d.sh added.
