@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /var/www/yia/walk/ || exit 1
+cd /var/www/hia/walk/ || exit 1
 
 while :;
 do
