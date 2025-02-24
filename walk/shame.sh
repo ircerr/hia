@@ -12,7 +12,7 @@ echo "# Outdated node SHAME list"
 echo "# #node_ver node_ip"
 echo "# -peer_ver peer_ip"
 
-cat ../hia.iplist | sort | uniq | \
+cat ../watchlist/hia.iplist | sort | uniq | \
 while read IP
 do
   #Parse PubK of peer
@@ -30,7 +30,7 @@ do
   cat $F | grep "$IP" | tr ' ' '\n' | sort | uniq | grep -v "$IP" | \
   while read PIP
   do
-    if [ "`grep \"$PIP\" ../hia.iplist`" == "" ]
+    if [ "`grep \"$PIP\" ../watchlist/hia.iplist`" == "" ]
     then
       continue
     fi
@@ -49,6 +49,3 @@ do
 done
 ) | tee shame.tmp && \
 mv shame.tmp shame.txt
-
-
-
