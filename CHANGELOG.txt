@@ -170,3 +170,4 @@
 20250224 ./walk/shame.sh added.
 20250224 ./walk/l.sh updated.
 20250224 ./walk/top.sh updated.
+20250224 ./walk/ver-d.sh updated.

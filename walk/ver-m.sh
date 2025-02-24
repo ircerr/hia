@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd /var/www/hia/watchlist/c/
+cd /var/www/hia/walk/ || exit 1
+
 (
 TS=`date -u +%Y%m`
 touch walk.version
