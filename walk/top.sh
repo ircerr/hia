@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "-Sorting by most peered first"
 echo -n > top.iplist
 echo -n > top.iplist.num
@@ -16,5 +18,3 @@ mv top.iplist.num.tmp top.iplist.num
 echo "# Most peered nodes ($((`cat $F | tr ' ' '\n' | sort | uniq | wc -l`)) nodes from $F)" 
 head -n10 top.iplist.num
 ) | tee top.txt
-
-

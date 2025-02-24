@@ -168,3 +168,4 @@
 20250224 ./walk/v.sh added.
 20250224 ./walk/walk2.sh added.
 20250224 ./walk/shame.sh added.
+20250224 ./walk/l.sh updated.
