@@ -174,3 +174,4 @@
 20250224 ./walk/ver-m.sh updated.
 20250224 ./walk/counts.sh updated.
 20250224 ./walk/shame.sh updated.
+20250224 ./walk/l.sh updated.

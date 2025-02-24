@@ -41,8 +41,8 @@ PEERSFILE="walk.peers.$TS"
 #PEERSFILE="walk.peers.`date -u +%Y%m`" #Monthly
 #if [ ! -f d3map.peers ]
 #then
-  echo "-Fetching http://hia.cjdns.ca/watchlist/c/$PEERSFILE as d3map.peers"
-  wget -qN http://hia.cjdns.ca/watchlist/c/$PEERSFILE -O d3map.peers.new
+  echo "-Fetching http://hia.cjdns.ca/walk/$PEERSFILE as d3map.peers"
+  wget -qN http://hia.cjdns.ca/walk/$PEERSFILE -O d3map.peers.new
   if [ "`head -n10 d3map.peers.new|grep -v '^$'|grep ^fc`" == "" ]
   then
     echo "-FAILED"
