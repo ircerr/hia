@@ -159,3 +159,4 @@
 20241005 ./watchlist/hia-parse-http-ak.sh updated.
 20241020 ./watchlist/hia-scan-tcp.sh updated.
 20241020 ./watchlist/hia-scan-udp.sh updated.
+20250224 ./walk/l.sh added.
