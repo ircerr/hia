@@ -26,3 +26,4 @@
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-http-git.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-http-cjdradio.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-nntp.sh added.
+20260108 ./var/www/cjdns/hia/watchlist/hia-scan-tcp.sh added.
