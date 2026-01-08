@@ -247,3 +247,4 @@
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-ssh.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-ssl.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-ver.sh added.
+20260108 ./var/www/cjdns/hia/watchlist/hia-parse-http-git.sh added.
