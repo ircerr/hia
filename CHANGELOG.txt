@@ -21,3 +21,4 @@
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-nodeinfo.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-proxy.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-ssh.sh added.
+20260108 ./var/www/cjdns/hia/watchlist/hia-parse-ssl.sh added.
