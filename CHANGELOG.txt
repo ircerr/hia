@@ -7,3 +7,4 @@
 20260108 ./var/www/cjdns/hia/watchlist/clean.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/l.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-iplist.sh added.
+20260108 ./var/www/cjdns/hia/watchlist/hia-parse.sh added.
