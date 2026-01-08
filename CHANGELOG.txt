@@ -2,3 +2,4 @@
 20260108 ./var/www/cjdns/hia/README.txt added.
 20260108 ./var/www/cjdns/hia/HOWTO.txt added.
 20260108 ./var/www/cjdns/hia/api/README.txt added.
+20260108 ./var/www/cjdns/hia/api/api-update.sh added.
