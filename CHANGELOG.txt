@@ -28,3 +28,4 @@
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-nntp.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-scan-tcp.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-scan-udp.sh added.
+20260108 ./var/www/cjdns/hia/watchlist/pubk.sh added.
