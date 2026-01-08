@@ -14,3 +14,4 @@
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-http.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-http-ipfs.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-http-ak.sh added.
+20260108 ./var/www/cjdns/hia/watchlist/hia-parse-http-titles.sh added.
