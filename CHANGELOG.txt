@@ -234,3 +234,4 @@
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-cifs.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-dns.sh added.
+20260108 ./var/www/cjdns/hia/watchlist/hia-parse-ftp.sh added.
