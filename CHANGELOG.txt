@@ -265,3 +265,4 @@
 20260108 ./var/www/cjdns/hia/watchlist/walk/walk2.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/walk/shame.sh added.
 20260108 ./var/www/cjdns/hia/test/d3map/d3map.sh added.
+20260108 ./var/www/cjdns/hia/test/d3map/d3.v3.min.js added.
