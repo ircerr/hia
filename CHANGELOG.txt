@@ -263,3 +263,4 @@
 20260108 ./var/www/cjdns/hia/watchlist/walk/walk2c.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/walk/v.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/walk/walk2.sh added.
+20260108 ./var/www/cjdns/hia/watchlist/walk/shame.sh added.
