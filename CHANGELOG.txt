@@ -30,3 +30,4 @@
 20260108 ./var/www/cjdns/hia/watchlist/hia-scan-udp.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/pubk.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/walk/l.sh added.
+20260108 ./var/www/cjdns/hia/watchlist/walk/top.sh added.
