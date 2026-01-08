@@ -34,3 +34,4 @@
 20260108 ./var/www/cjdns/hia/watchlist/walk/walk.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/walk/ver-d.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/walk/walk2b.sh added.
+20260108 ./var/www/cjdns/hia/watchlist/walk/ver-m.sh added.
