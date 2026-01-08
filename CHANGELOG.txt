@@ -225,3 +225,4 @@
 >>>>>>> eddce5efc0794ea0df3ad9257e8bb1feadd8090e
 20260108 ./var/www/cjdns/hia/README.txt added.
 20260108 ./var/www/cjdns/hia/HOWTO.txt added.
+20260108 ./var/www/cjdns/hia/api/README.txt added.
