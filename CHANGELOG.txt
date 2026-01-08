@@ -1,3 +1,4 @@
 20260108 ./CHANGELOG.txt created.
 20260108 ./var/www/cjdns/hia/README.txt added.
 20260108 ./var/www/cjdns/hia/HOWTO.txt added.
+20260108 ./var/www/cjdns/hia/api/README.txt added.
