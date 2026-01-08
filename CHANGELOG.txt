@@ -17,3 +17,4 @@
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-http-titles.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-http-referer.sh added.
 20260108 ./var/www/cjdns/hia/watchlist/hia-parse-stats.sh added.
+20260108 ./var/www/cjdns/hia/watchlist/hia-parse-nfs.sh added.
