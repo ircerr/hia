@@ -53,7 +53,7 @@ function padip() {  #Pad IP - fill in missing zeros
 echo "hia-parse-http-ipfs begins"
 
 TS="`date -u +%Y%m%d`"
-wget -qN "http://hia.cjdns.ca/watchlist/c/walk.peers.$TS" -O - | \
+wget -qN "http://hia.cjdns.ca/walk/walk.peers.$TS" -O - | \
 tr ' ' '\n' | sort -n | uniq > hia-parse-http-ipfs.tmp.peers
 
 cat hia.urllist | sort | \
